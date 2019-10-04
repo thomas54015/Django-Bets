@@ -1,6 +1,11 @@
 // I typed up the todolist we wrote in our first
 //  meeting.
 
+//Note: for layout design, the files can be done in HTML, then
+//later converted to .php as we add in the function. This is
+//incase not everyone is able to install a web server on their
+//computer.
+
 #API/Web Scraper
 
 #Landing Page (index.html) FE: Megan BE: Thomas
@@ -18,7 +23,7 @@
   *Password - Input
   *Forgot Pass - Link
 
-#Leages Page FR: Megan
+#Leages Page (league.html) FR: Megan
   *League Name
   *League Size
   **Optional** - Password to join league
