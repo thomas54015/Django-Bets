@@ -1,0 +1,24 @@
+// I typed up the todolist we wrote in our first
+//  meeting.
+
+#API/Web Scraper
+
+#Landing Page (index.html) FE: Megan BE: Thomas
+  *Sign up - Link
+  *Login - Link
+
+#Sign Up (signup.php) BE: Miguel
+  *Username - Input
+  *Password - Input
+  *Re-enter Password - Input
+  *Login - Link
+
+#Login (login.php) FE: Thomas BE: Thomas
+  *Username - Input
+  *Password - Input
+  *Forgot Pass - Link
+
+#Leages Page FR: Megan
+  *League Name
+  *League Size
+  **Optional** - Password to join league
