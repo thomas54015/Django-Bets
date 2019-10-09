@@ -1,0 +1,93 @@
+body {
+    background: #000000;
+    color: white;
+    padding: 0px;
+    margin: 0px;
+  }
+.banner {
+
+  background: #424242;
+  overflow: auto;
+  width: 1200px;
+  height: 70px;
+  margin: auto;
+  padding: 10px 10px 10px 10px;
+}
+
+.banner img {
+  height: 70px;
+}
+
+.main {
+  background-color: #212121;
+  overflow: auto;
+  margin: auto;
+  width: 1200px;
+  height: 500px;
+  padding: 10px;
+}
+
+.loginWrap {
+  border-radius: 25px;
+  border: 1px solid #000000;
+  color: #000000;
+  background-color: #ffffff;
+  overflow: auto;
+  margin: 60px auto 60px;
+  width: 560px;
+  padding: 40px;
+}
+
+.cTitle {
+  overflow: auto;
+  text-align: center;
+  font-weight: bold;
+  margin: auto;
+  font-size: 20px;
+  display: block;
+  clear: left;
+}
+
+.inputWrap {
+  overflow: auto;
+  margin: auto;
+  padding: 7px 0px 0px 0px;
+  display: block;
+  clear: left;
+}
+
+.inputLeft {
+  overflow: auto;
+  text-align: right;
+  width: 195px;
+  display: block;
+  float: left;
+}
+
+.inputRight {
+  overflow: auto;
+  text-align: left;
+  width: 360px;
+  padding: 0px 0px 0px 5px;
+  display: block;
+  float: left;
+}
+
+.inputCenter {
+  overflow: auto;
+  text-align: center;
+  font-weight: bold;
+  margin: auto;
+  display: block;
+}
+
+.formButton {
+  border-radius: 5px;
+  border: 1px solid #000000;
+  color: #000000;
+  background-color: #bfdfff;
+  overflow: auto;
+  margin: auto;
+  width: 80px;
+  padding: 5px 8px 5px 8px;
+}
