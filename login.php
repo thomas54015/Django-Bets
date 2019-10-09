@@ -3,7 +3,7 @@
   <title>Login</title>
   <link rel="stylesheet" href="./css/login.css">
   <link rel="icon" href="./pics/danjosfantasy.jpg">
-</head>
+</head> 
 <body>
   <div class="banner">
     <img class="page-logo" src="./pics/logo.png" alt="logo">
