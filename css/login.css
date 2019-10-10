@@ -91,3 +91,58 @@ body {
   width: 80px;
   padding: 5px 8px 5px 8px;
 }
+
+.navWrap {
+  background-color: #121212;
+  overflow: auto;
+  margin: auto;
+  width: 1220px;
+}
+
+.navButtonL {
+  overflow: auto;
+  margin: auto;
+  text-align: center;
+  width: 150px;
+  padding: 0px;
+  display: inline;
+  float: left;
+}
+
+.navButtonR {
+  overflow: auto;
+  margin: auto;
+  text-align: center;
+  width: 150px;
+  padding: 0px;
+  display: inline;
+  float: right;
+}
+
+.navWrap a {
+  color: #ffffff;
+  background-color: #121212;
+  padding: 12px 5px 12px 5px;
+  overflow: auto;
+  display: block;
+  text-decoration: none;
+  width: 140px;
+}
+
+.navWrap a:hover {
+  color: #ffffff;
+  background-color: #545454;
+  padding: 12px 5px 12px 5px;
+  overflow: auto;
+  display: block;
+  text-decoration: none;
+  width: 140px;
+}
+
+.inputCenterError {
+  color: #ff0000;
+  overflow: auto;
+  text-align: center;
+  margin: auto;
+  display: block;
+}
