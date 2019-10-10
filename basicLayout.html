@@ -1,0 +1,60 @@
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="icon" href="./pics/danjosfantasy.jpg">
+</head>
+<body>
+  <div class="banner">
+    <img class="page-logo" src="./pics/logo.png" alt="logo">
+  </div>
+  <div class="navWrap">
+
+    <div class="navButtonL">
+      <a href="index.html">Home</a>
+    </div>
+    <div class="navButtonL">
+      <a href="#">Players</a>
+    </div>
+    <div class="navButtonR">
+      <a href="#">Login</a>
+    </div>
+    <div class="navButtonR">
+      <a href="#">Sign up</a>
+    </div>
+  </div>
+  <div class="main">
+    <div class="loginWrap">
+      <form action="post" enctype="multipart/form-data" method="post">
+      <div class="cTitle">
+      Login to Django
+    </div>
+    <div class="inputWrap">
+      <div class="inputLeft">
+        Username:
+      </div>
+      <div class="inputRight">
+        <input type="text" name = "username" value=""/>
+      </div>
+    </div>
+    <div class="inputWrap">
+      <div class="inputLeft">
+        Password:
+      </div>
+      <div class="inputRight">
+        <input name="password" type="password" />
+      </div>
+    </div>
+    <div class="inputWrap">
+      <div class="inputCenter">
+        <input class="formButton" type="submit" value="Login" name="login" />
+      </div>
+    </div>
+    <div class="inputWrap">
+      <div class="inputCenterError">
+      </div>
+    </div>
+  </form>
+    </div>
+  </div>
+</body>
