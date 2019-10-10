@@ -4,11 +4,20 @@
 $servername = "localhost";
 $username = "djangoadmin";
 $password = "bestgroup";
-$dbname = "localhost";
+$dbname = "django";
 
 /*
 MySQL command to add a new user to database. Not needed for anyone who doesn't
 want to use a database locally. **Grants user full rights to everything**
 GRANT ALL PRIVILEGES ON *.* TO 'djangoadmin'@'localhost' IDENTIFIED BY 'bestgroup';
 */
+
+// A redirection function I found on the net a long time ago,
+// I will try to find a reference to add here later.
+function Redirect($url, $permanent = false)
+{
+    header('Location: ' . $url, true, $permanent ? 301 : 302);
+
+    exit();
+}
 ?>
