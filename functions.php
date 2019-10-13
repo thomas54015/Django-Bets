@@ -5,8 +5,18 @@ session_start();
 // This way we would only have to change it here instead of everywhere.
 $servername = "localhost";
 $username = "djangoadmin";
+//djangoadmin8
 $password = "bestgroup";
+// best!Group
 $dbname = "django";
+
+/*
+//This is for the online site.
+$servername = "mysql.djangosfantasy.com";
+$username = "djangoadmin8";
+$password = "best!Group";
+$dbname = "djangosfantasy";
+*/
 
 /*
 MySQL command to add a new user to database. Not needed for anyone who doesn't
