@@ -18,6 +18,19 @@ body {
     height: 70px;
 }
 
+.chatbox {
+    height: 20px;
+    width: 275px;
+    color: white;
+    overflow: hidden;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    background-color: #424242; 
+    resize: none;
+}
+
 .leagueList {
     font-family: "Arial Black", Gadget, sans-serif;
     font-size: 18px;
@@ -95,7 +108,7 @@ body {
   
 .panel-left {
     height: inherit;
-    width: 25%;
+    width: 24%;
     position: relative;
     float: left;
     border: 1px solid red;
@@ -115,14 +128,21 @@ body {
     border: 1px solid blue;
 }
 
+.profile {
+    float:left;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .profile-picture {
     height:30px;
 }
 
 .wrapper {
     background-color: #212121;
-    height: 95vh;
-    padding-left:0;
-    margin:0;
+    height: 800px;
+    width: 1200px;
+    padding: 12px 5px 12px 5px;
     word-break: break-word;
 }
