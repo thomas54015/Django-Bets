@@ -1,15 +1,75 @@
-* { margin:0; padding:0; box-sizing:border-box; }
-
 body {
-    background: #424242;
+    background: #000000;
     color: white;
-  }
+    padding: 0px;
+    margin: 0px;
+}
+
+.banner {
+    background: #424242;
+    overflow: auto;
+    width: 1200px;
+    height: 70px;
+    margin: auto;
+    padding: 10px 10px 10px 10px;
+}
+
+.banner img {
+    height: 70px;
+}
 
 .wrapper {
     background-color: #212121;
     height: 95vh;
     padding-left:0;
     margin:0;
+}
+
+.navWrap {
+    background-color: #121212;
+    overflow: auto;
+    margin: auto;
+    width: 1220px;
+}
+  
+.navButtonL {
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+    width: 150px;
+    padding: 0px;
+    display: inline;
+    float: left;
+}
+  
+.navButtonR {
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+    width: 150px;
+    padding: 0px;
+    display: inline;
+    float: right;
+}
+  
+.navWrap a {
+    color: #ffffff;
+    background-color: #121212;
+    padding: 12px 5px 12px 5px;
+    overflow: auto;
+    display: block;
+    text-decoration: none;
+    width: 140px;
+}
+  
+.navWrap a:hover {
+    color: #ffffff;
+    background-color: #545454;
+    padding: 12px 5px 12px 5px;
+    overflow: auto;
+    display: block;
+    text-decoration: none;
+    width: 140px;
 }
   
 .left-panel {
