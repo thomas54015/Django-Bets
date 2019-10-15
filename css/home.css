@@ -18,11 +18,21 @@ body {
     height: 70px;
 }
 
-.wrapper {
-    background-color: #212121;
-    height: 95vh;
-    padding-left:0;
-    margin:0;
+.leagueList {
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 18px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: #FFFFFF;
+    font-weight: 400;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
+}
+
+.leagueSelected {
+    float: right;
 }
 
 .navWrap {
@@ -38,7 +48,6 @@ body {
     text-align: center;
     width: 150px;
     padding: 0px;
-    display: inline;
     float: left;
 }
   
@@ -48,7 +57,6 @@ body {
     text-align: center;
     width: 150px;
     padding: 0px;
-    display: inline;
     float: right;
 }
   
@@ -71,8 +79,21 @@ body {
     text-decoration: none;
     width: 140px;
 }
+
+.newLeague {
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #FFFFFF;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
+}
   
-.left-panel {
+.panel-left {
     height: inherit;
     width: 25%;
     position: relative;
@@ -80,16 +101,28 @@ body {
     border: 1px solid red;
 }
 
-.center-panel {
+.panel-center {
     height: inherit;
     width: 50%;
     float: left;
     border: 1px solid green;
 }
 
-.right-panel {
+.panel-right {
     height: inherit;
     width: 25%;
     float: left;
     border: 1px solid blue;
+}
+
+.profile-picture {
+    height:30px;
+}
+
+.wrapper {
+    background-color: #212121;
+    height: 95vh;
+    padding-left:0;
+    margin:0;
+    word-break: break-word;
 }
