@@ -150,6 +150,8 @@ body {
 
 .profile-picture {
     height:30px;
+    float: left;
+    display: block;
 }
 
 .wrapper {
