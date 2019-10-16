@@ -8,19 +8,75 @@
 
         <title>Django Bets</title>
         <link rel="icon" href="./pics/danjosfantasy.jpg">
-
-
     </head>
 
     <body>
-        <h1 style="font-family:Verdana; line-height:5vh;">
-            <img class="page-logo" src="./pics/logo.png" alt="logo" style="width:20vh">
-        </h1>
+        <div class="banner">
+            <img class="page-logo" src="./pics/logo.png" alt="logo">
+          </div>
+          <div class="navWrap">
+        
+            <div class="navButtonL">
+              <a href="index.html">Home</a>
+            </div>
+            <div class="navButtonL">
+              <a href="#">Players</a>
+            </div>
+            <div class="navButtonR">
+              <a href="#">Login</a>
+            </div>
+            <div class="navButtonR">
+              <a href="#">Sign up</a>
+            </div>
+          </div>
 
         <div class="wrapper">
-            <div class="left-panel">One</div>
-            <div class="center-panel">Two</div>
-            <div class="right-panel">Three</div>
+            <div class="panel-left">
+                <a href="profile.html" class="profile">
+                    <img class="profile-picture" alt="profile picture" src="pics/defaultprofile.png">
+                </a>
+                <h2>
+                    USERNAME
+                </h2>
+                <br><br>
+                <ul class="leagueList">
+                    <a href="league1">League1Name</a> 1Score <br>
+                    <a href="league2">League2Name</a> 2Score <br>
+                    <a href="league3">League3Name</a> 3Score <br>
+                </ul>
+                <div class="newLeague">
+                    <a href="#">➕ New League </a>
+                </div>
+            </div>
+            <div class="panel-center">
+                <div class="leagueBox">
+                  Leaguename<br><br>
+
+                  Team - TeamPoints<br><br>
+
+                  player1 - points<br>
+                  player2 - points<br>
+                  player3 - points<br>
+                  player4 - points<br>
+                  player5 - points<br>
+                  player6 - points<br>
+                  player7 - points<br>
+                  player8 - points<br>
+                  player9 - points<br>
+                  player10 - points<br>
+                  player11 - points<br>
+                </div>
+            </div>
+            <div class="panel-right">
+                <ul>
+                    MikeTheMan: Ur guys bad. <br>
+                    SHaiduc: Go home scrub <br>
+                    MikeTheMan: no u <br>
+                    EstaCinnabon: *reverse card* <br>
+                    MikeTheMan: woooow <br>
+                </ul>
+                <textarea class="chatbox" placeholder="Don't be shy..." spellcheck="false"></textarea>
+            </div>
         </div>
     </body>
 </html>

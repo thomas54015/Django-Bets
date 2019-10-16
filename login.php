@@ -12,7 +12,10 @@ if (!empty($_POST['login']))
   $loginError = "";
   $user = $_POST['username'];
   $pass = $_POST['password'];
-  // www.w3schools.com way of connecting to database.
+  // I knew this function existed, but refrenced from :https://www.w3schools.com/php/func_string_strtolower.asp#targetText=strtoupper()%20%2D%20converts%20a%20string,in%20a%20string%20to%20uppercase
+  // The reason I did this, is so that people cant have the same username with different caps.
+  $user = strtolower($user);
+  // refrenced: https://www.w3schools.com/php/php_mysql_select.asp
   $conn = new mysqli($servername, $username, $password, $dbname);
   // Check connection
   if ($conn->connect_error) {
@@ -37,11 +40,20 @@ if (!empty($_POST['login']))
     }
   }
   if ($mayPass == 1) {
-    $_SESSION['userSess'] = $user;
+    // refrenced: https://www.pontikis.net/tip/?id=18 for date('Y-m-d H:i:s')
+    $currentDT = date('Y-m-d H:i:s');
+    // refrenced: https://www.w3schools.com/php/php_mysql_update.asp
+    $sql = "UPDATE users SET lastlog='$currentDT' WHERE username='$user'";
+
+    if ($conn->query($sql) === TRUE) {
+      $_SESSION['userSess'] = $user;
+    }
   }
   else {
     $loginError = "Invalid username or Password";
   }
+  // I forgot to origninally close the database
+  $conn->close();
 }
 if (!empty($_SESSION['userSess']))
 {
