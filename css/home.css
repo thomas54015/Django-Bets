@@ -20,15 +20,26 @@ body {
 
 .chatbox {
     height: 20px;
-    width: 275px;
+    width: 250px;
     color: white;
     overflow: hidden;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0;
+    margin-bottom: 0px;
     background-color: #424242; 
     resize: none;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.leagueBox {
+    height: 700px;
+    width: 550px;
+    display: block;
+    margin: 30px;
+    border: 1px solid white;
+    font-size: 30px;
+    text-align: center;
 }
 
 .leagueList {
@@ -104,11 +115,12 @@ body {
     font-style: normal;
     font-variant: small-caps;
     text-transform: none;
+    text-align: center;
 }
   
 .panel-left {
     height: inherit;
-    width: 24%;
+    width: 305px;
     position: relative;
     float: left;
     border: 1px solid red;
@@ -116,23 +128,24 @@ body {
 
 .panel-center {
     height: inherit;
-    width: 50%;
+    width: 610px;
     float: left;
     border: 1px solid green;
 }
 
 .panel-right {
     height: inherit;
-    width: 25%;
+    width: 299px;
     float: left;
     border: 1px solid blue;
+    position: relative;
 }
 
 .profile {
-    float:left;
-    display: block;
+    display: inline;
     margin-left: auto;
     margin-right: auto;
+    vertical-align: middle;
 }
 
 .profile-picture {
@@ -142,7 +155,9 @@ body {
 .wrapper {
     background-color: #212121;
     height: 800px;
-    width: 1200px;
-    padding: 12px 5px 12px 5px;
+    width: 1220px;
     word-break: break-word;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
