@@ -18,17 +18,15 @@ body {
 }
 
 .chatbox {
-    height: 20px;
-    width: 250px;
+    height: 750px;
+    width: 300px;
     color: white;
     overflow: hidden;
     display: block;
-    margin-bottom: 0px;
     background-color: #424242; 
     resize: none;
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    margin: 20px;
 }
 
 .leagueBox {
