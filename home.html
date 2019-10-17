@@ -49,25 +49,50 @@
                 </div>
                 <br><br>
                 <a class="twitter-timeline" data-height="500" data-theme="dark" href="https://twitter.com/premierleague?ref_src=twsrc%5Etfw">Tweets by premierleague</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
+              </div>
             <div class="panel-center">
-                <div class="leagueBox">
-                  Leaguename<br><br>
-
-                  Team - TeamPoints<br><br>
-
-                  player1 - points<br>
-                  player2 - points<br>
-                  player3 - points<br>
-                  player4 - points<br>
-                  player5 - points<br>
-                  player6 - points<br>
-                  player7 - points<br>
-                  player8 - points<br>
-                  player9 - points<br>
-                  player10 - points<br>
-                  player11 - points<br>
+                <div style="justify-content: center;">
+                  <button class="tablink" onclick="openPage('Team', this, 'grey')">My Team</button>
+                  <button class="tablink" onclick="openPage('Standings', this, 'grey')" id="defaultOpen">Standings</button>
                 </div>
+                
+                <div id="Team" class="tabcontent">
+                  <div class="leagueBox"><br>
+                    Leaguename<br><br>
+  
+                    Team - TeamPoints<br><br>
+  
+                    player1 - points<br>
+                    player2 - points<br>
+                    player3 - points<br>
+                    player4 - points<br>
+                    player5 - points<br>
+                    player6 - points<br>
+                    player7 - points<br>
+                    player8 - points<br>
+                    player9 - points<br>
+                    player10 - points<br>
+                    player11 - points<br>
+                  </div>
+                </div>
+                <div id="Standings" class="tabcontent" style="margin:10px;margin-top:70px;">
+                  <!-- This widget is from https://www.sofascore.com/tournament/football/england/premier-league/17 -->
+                  <iframe id="sofa-standings-embed-1-23776" width="100%" height="726px" style="height:726px!important" src="https://www.sofascore.com/tournament/1/23776/standings/tables/embed" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="https://www.sofascore.com/bundles/sofascoreweb/js/bin/util/embed.min.js"></script><script type="text/javascript">sofa_embed('sofa-standings-embed-1-23776', window);</script>
+                </div>
+                <script>
+                  //script and code for buttons found at https://www.w3schools.com/howto/howto_js_full_page_tabs.asp
+                  function openPage(pageName,elmnt,color) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                      tabcontent[i].style.display = "none";
+                    }
+                    document.getElementById(pageName).style.display = "block";
+                  }
+                  
+                  // Get the element with id="defaultOpen" and click on it
+                  document.getElementById("defaultOpen").click();
+                </script>
             </div>
             <div class="panel-right">
               <div>
