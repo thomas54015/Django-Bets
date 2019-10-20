@@ -1,35 +1,178 @@
-* { margin:0; padding:0; box-sizing:border-box; }
-
 body {
-    background: #424242;
+    background: #000000;
     color: white;
-  }
+    padding: 0px;
+    margin: 0px;
+}
 
-.wrapper {
-    background-color: #212121;
-    height: 95vh;
-    padding-left:0;
-    margin:0;
+.banner {
+    background: #424242;
+    overflow: auto;
+    width: 1200px;
+    margin: auto;
+    padding: 10px 10px 10px 10px;
+}
+
+.banner img {
+    height: 70px;
+}
+
+.chatbox {
+    height: 750px;
+    width: 300px;
+    color: white;
+    overflow: hidden;
+    display: block;
+    background-color: #424242; 
+    resize: none;
+    position: absolute;
+    margin: 20px;
+}
+
+.leagueBox {
+    height: 700px;
+    width: 550px;
+    display: block;
+    margin: 30px;
+    border: 1px solid white;
+    font-size: 30px;
+    text-align: center;
+}
+
+.leagueList {
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 18px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: #FFFFFF;
+    font-weight: 400;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
+}
+
+.leagueSelected {
+    float: right;
+}
+
+.navWrap {
+    background-color: #121212;
+    overflow: auto;
+    margin: auto;
+    width: 1220px;
 }
   
-.left-panel {
+.navButtonL {
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+    width: 150px;
+    padding: 0px;
+    float: left;
+}
+  
+.navButtonR {
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+    width: 150px;
+    padding: 0px;
+    float: right;
+}
+  
+.navWrap a {
+    color: #ffffff;
+    background-color: #121212;
+    padding: 12px 5px 12px 5px;
+    overflow: auto;
+    display: block;
+    text-decoration: none;
+    width: 140px;
+}
+  
+.navWrap a:hover {
+    color: #ffffff;
+    background-color: #545454;
+    padding: 12px 5px 12px 5px;
+    overflow: auto;
+    display: block;
+    text-decoration: none;
+    width: 140px;
+}
+
+.newLeague {
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #FFFFFF;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
+    text-align: center;
+}
+  
+.panel-left {
     height: inherit;
-    width: 25%;
+    width: 305px;
     position: relative;
     float: left;
     border: 1px solid red;
 }
 
-.center-panel {
+.panel-center {
     height: inherit;
-    width: 50%;
+    width: 610px;
     float: left;
     border: 1px solid green;
 }
 
-.right-panel {
+.panel-right {
     height: inherit;
-    width: 25%;
+    width: 299px;
     float: left;
     border: 1px solid blue;
+    position: relative;
+}
+
+.profile {
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+}
+
+.profile-picture {
+    height:30px;
+    float: left;
+    display: block;
+}
+
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+  }
+  
+  .tablink:hover {
+    background-color: #777;
+  }
+
+.wrapper {
+    background-color: #212121;
+    height: 800px;
+    width: 1220px;
+    word-break: break-word;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
