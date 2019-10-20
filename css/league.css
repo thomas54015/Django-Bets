@@ -1,0 +1,18 @@
+.grid {
+  display: grid;
+  background-color: #2196F3;
+  padding: 5px;
+  grid-template-columns: auto auto auto auto auto;
+}
+
+.box {
+  background-color: rgb(149, 1, 254);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.players {
+  display: inline;
+}
