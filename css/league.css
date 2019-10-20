@@ -1,3 +1,49 @@
+.nav {
+    background-color: #121212;
+    overflow: auto;
+    margin: auto;
+    width: 1220px;
+}
+
+.navButtonL {
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+    width: 150px;
+    padding: 0px;
+    float: left;
+}
+
+.navButtonR {
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+    width: 150px;
+    padding: 0px;
+    float: right;
+}
+
+.navWrap a {
+    color: #ffffff;
+    background-color: #121212;
+    padding: 12px 5px 12px 5px;
+    overflow: auto;
+    display: block;
+    text-decoration: none;
+    width: 140px;
+}
+
+.navWrap a:hover {
+    color: #ffffff;
+    background-color: #545454;
+    padding: 12px 5px 12px 5px;
+    overflow: auto;
+    display: block;
+    text-decoration: none;
+    width: 140px;
+}
+
+
 .grid {
   display: grid;
   background-color: #2196F3;
