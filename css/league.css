@@ -23,7 +23,7 @@
     float: right;
 }
 
-.navWrap a {
+.nav a {
     color: #ffffff;
     background-color: #121212;
     padding: 12px 5px 12px 5px;
@@ -33,7 +33,7 @@
     width: 140px;
 }
 
-.navWrap a:hover {
+.nav a:hover {
     color: #ffffff;
     background-color: #545454;
     padding: 12px 5px 12px 5px;
@@ -42,7 +42,6 @@
     text-decoration: none;
     width: 140px;
 }
-
 
 .grid {
   display: grid;
