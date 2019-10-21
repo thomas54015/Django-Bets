@@ -22,6 +22,7 @@ body {
 
 .main {
   background-color: #212121;
+  color: white;
   overflow: auto;
   margin: auto;
   width: 1200px;
