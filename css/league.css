@@ -1,0 +1,87 @@
+.nav {
+    background-color: #121212;
+    overflow: auto;
+    margin: auto;
+    width: 1220px;
+}
+
+.navButtonL {
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+    width: 150px;
+    padding: 0px;
+    float: left;
+}
+
+.navButtonR {
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+    width: 150px;
+    padding: 0px;
+    float: right;
+}
+
+.nav a {
+    color: #ffffff;
+    background-color: #121212;
+    padding: 12px 5px 12px 5px;
+    overflow: auto;
+    display: block;
+    text-decoration: none;
+    width: 140px;
+}
+
+.nav a:hover {
+    color: #ffffff;
+    background-color: #545454;
+    padding: 12px 5px 12px 5px;
+    overflow: auto;
+    display: block;
+    text-decoration: none;
+    width: 140px;
+}
+
+.left {
+    height: inherit;
+    width: 255px;
+    position: relative;
+    float: left;
+    border: 1px solid black;
+}
+.center {
+    height: inherit;
+    width: 500px;
+    float: left;
+    position: relative;
+}
+
+.right {
+    height: inherit;
+    width: 360px;
+    float: right;
+    position: relative;
+}
+
+.grid {
+  width: 810px;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #2196F3;
+  padding: 5px;
+  grid-template-columns: auto auto auto auto auto;
+}
+
+.box {
+  background-color: rgb(149, 1, 254);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.players {
+  display: inline;
+}
