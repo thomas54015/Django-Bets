@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+    color: white;
+    padding: 0px;
+    margin: 0px;
+}
+
+.banner {
+    background: #424242;
+    overflow: auto;
+    width: 1200px;
+    margin: auto;
+    padding: 10px 10px 10px 10px;
+}
+
+.banner img {
+    height: 70px;
+}
+
+.classBlock {
+    border: 1px solid white;
+    position: relative;
+}
+
+.navWrap {
+    background-color: #121212;
+    overflow: auto;
+    margin: auto;
+    width: 1220px;
+}
+  
+.navButtonL {
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+    width: 150px;
+    padding: 0px;
+    float: left;
+}
+  
+.navButtonR {
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+    width: 150px;
+    padding: 0px;
+    float: right;
+}
+  
+.navWrap a {
+    color: #ffffff;
+    background-color: #121212;
+    padding: 12px 5px 12px 5px;
+    overflow: auto;
+    display: block;
+    text-decoration: none;
+    width: 140px;
+}
+  
+.navWrap a:hover {
+    color: #ffffff;
+    background-color: #545454;
+    padding: 12px 5px 12px 5px;
+    overflow: auto;
+    display: block;
+    text-decoration: none;
+    width: 140px;
+}
+
+.statName {
+    float: left;
+}
+
+.stat {
+    float: right;
+}
+  
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+  }
+  
+  .tablink:hover {
+    background-color: #777;
+  }
+
+.wrapper {
+    background-color: #212121;
+    height: 800px;
+    width: 1220px;
+    word-break: break-word;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
