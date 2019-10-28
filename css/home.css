@@ -23,7 +23,7 @@ body {
     color: white;
     overflow: hidden;
     display: block;
-    background-color: #424242; 
+    background-color: #424242;
     resize: none;
     position: absolute;
     margin: 20px;
@@ -33,7 +33,7 @@ body {
     height: 700px;
     width: 550px;
     display: block;
-    margin: 30px;
+    margin: 55px 30px 30px 30px;
     border: 1px solid white;
     font-size: 30px;
     text-align: center;
@@ -62,7 +62,7 @@ body {
     margin: auto;
     width: 1220px;
 }
-  
+
 .navButtonL {
     overflow: auto;
     margin: auto;
@@ -71,7 +71,7 @@ body {
     padding: 0px;
     float: left;
 }
-  
+
 .navButtonR {
     overflow: auto;
     margin: auto;
@@ -80,7 +80,7 @@ body {
     padding: 0px;
     float: right;
 }
-  
+
 .navWrap a {
     color: #ffffff;
     background-color: #121212;
@@ -90,7 +90,7 @@ body {
     text-decoration: none;
     width: 140px;
 }
-  
+
 .navWrap a:hover {
     color: #ffffff;
     background-color: #545454;
@@ -114,7 +114,7 @@ body {
     text-transform: none;
     text-align: center;
 }
-  
+
 .panel-left {
     height: inherit;
     width: 305px;
@@ -162,7 +162,7 @@ body {
     font-size: 17px;
     width: 25%;
   }
-  
+
   .tablink:hover {
     background-color: #777;
   }
@@ -175,4 +175,35 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.newLeagueL {
+  margin: 0px auto 2px auto;
+  width: 140px;
+  text-align: left;
+}
+
+.newLeagueT {
+  margin: auto;
+  width: 140px;
+}
+
+.newLeagueB{
+  margin: 2px auto;
+  clear: left;
+  display: block;
+
+  border-radius: 5px;
+  border: 1px solid #000000;
+  color: #000000;
+  background-color: #bfdfff;
+  overflow: auto;
+  padding: 5px 8px 5px 8px;
+}
+
+.newLeagueErr {
+  color: #ff0000;
+  margin: 0px auto 2px auto;
+  width: 240px;
+  text-align: left;
 }
