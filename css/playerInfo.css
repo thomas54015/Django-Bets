@@ -21,9 +21,22 @@ body {
     height: 70px;
 }
 
-.classBlock {
-    border: 1px solid white;
-    position: relative;
+.basicPlayerInfo {
+    font-size: 20pt;
+}
+
+.infoWrapper {
+    height: 800px;
+    width: 915px;
+    word-break: break-word;
+    display: block;
+    margin-left: auto;
+    margin-right: 10px;
+    border: 1px solid green;
+}
+
+li {
+    list-style-type: none;
 }
 
 .navWrap {
@@ -71,12 +84,24 @@ body {
     width: 140px;
 }
 
-.statName {
-    float: left;
-}
-
 .stat {
     float: right;
+}
+
+.statBlock {
+    border: 1px solid lightgrey;
+    position: relative;
+    padding-top: 3px;
+    border-radius: 0 0 3px 3px;
+    width:290px;
+    margin-left:10px;
+    float:left;
+}
+
+.statName {
+    float: left;
+    padding: 5px;
+    border-bottom: 1px solid white;
 }
   
 .tablink {
