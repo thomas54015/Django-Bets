@@ -46,6 +46,9 @@
                 </ul>
                 <div class="newLeague">
                     <a href="#">➕ New League </a>
+                    <div class="tooltip">[?]
+                      <span class="tooltiptext">Create a new league!</span>
+                    </div>
                 </div>
                 <br><br>
                 <a class="twitter-timeline" data-height="500" data-theme="dark" href="https://twitter.com/premierleague?ref_src=twsrc%5Etfw">Tweets by premierleague</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -87,10 +90,13 @@
                     for (i = 0; i < tabcontent.length; i++) {
                       tabcontent[i].style.display = "none";
                     }
+                    tablinks = document.getElementsByClassName("tablink");
+                    for (i = 0; i < tablinks.length; i++) {
+                      tablinks[i].style.backgroundColor = "";
+                    }
                     document.getElementById(pageName).style.display = "block";
+                    elmnt.style.backgroundColor = color;
                   }
-                  
-                  // Get the element with id="defaultOpen" and click on it
                   document.getElementById("defaultOpen").click();
                 </script>
             </div>
