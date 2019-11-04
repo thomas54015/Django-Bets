@@ -54,28 +54,44 @@
                 <a class="twitter-timeline" data-height="500" data-theme="dark" href="https://twitter.com/premierleague?ref_src=twsrc%5Etfw">Tweets by premierleague</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
               </div>
             <div class="panel-center">
-                <div style="justify-content: center;">
+                <div>
                   <button class="tablink" onclick="openPage('Team', this, 'grey')">My Team</button>
                   <button class="tablink" onclick="openPage('Standings', this, 'grey')" id="defaultOpen">Standings</button>
                 </div>
                 
                 <div id="Team" class="tabcontent">
                   <div class="leagueBox"><br>
-                    Leaguename<br><br>
-  
-                    Team - TeamPoints<br><br>
-  
-                    player1 - points<br>
-                    player2 - points<br>
-                    player3 - points<br>
-                    player4 - points<br>
-                    player5 - points<br>
-                    player6 - points<br>
-                    player7 - points<br>
-                    player8 - points<br>
-                    player9 - points<br>
-                    player10 - points<br>
-                    player11 - points<br>
+                    <table style="margin-left:auto; margin-right:auto; border-collapse:collapse;">
+                      <tbody>
+                        <tr>
+                          <th colspan="2" style="text-align: center; height: 100px;">(teamName)</th>
+                        </tr>
+                        <tr class="row">
+                          <td style="text-align: left;">Win %</td>
+                          <td style="text-align: right;">(winsPercent)</td>
+                        </tr>
+                        <tr class="row">
+                          <td style="text-align: left;">Wins</td>
+                          <td style="text-align: right;">(wins)</td>
+                        </tr>
+                        <tr class="row">
+                          <td style="text-align: left;">Losses</td>
+                          <td style="text-align: right;">(losses)</td>
+                        </tr>
+                        <tr class="row">
+                          <td style="text-align: left;">Draws</td>
+                          <td style="text-align: right;">(draws)</td>
+                        </tr>
+                        <tr class="row">
+                          <td style="text-align: left;">Goals</td>
+                          <td style="text-align: right;">(goals)</td>
+                        </tr>
+                        <tr class="row">
+                          <td style="text-align: left;">Conceded Goals</td>
+                          <td style="text-align: right;">(cGoals)</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 <div id="Standings" class="tabcontent" style="margin:10px;margin-top:70px;">
