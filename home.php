@@ -17,7 +17,7 @@ $leagueP = $_REQUEST["leagueP"]; //pulls the get variable
 
 function leaguesData($servername, $username, $password, $dbname, $uname, $leagueP)
 {
-  
+
   //#####################################################
   //#####################################################
   //######### DO NOT FORGET TO CHANGE LINKPASS  #########
@@ -237,7 +237,7 @@ if (!empty($_POST['newLeagueB']))
 
       $conn->query($sql);
     }
-    echo "Loop check: " . $numsTest;
+  //  echo "Loop check: " . $numsTest;
   }
   $conn->close();
 }
