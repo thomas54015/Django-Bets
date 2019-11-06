@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include "functions.php";
 
 // Variable to store the username
@@ -6,6 +8,12 @@ $user = "";
 // variable for password
 $pass = "";
 
+$linkPass="";
+$linkPass = $_REQUEST['linkPass'];
+$leagueN = $_REQUEST['leagueN'];
+$invite = $_REQUEST['invite'];
+
+//echo "The link pass: " . $linkPass . " leagueN: " . $leagueN . " invite: " . $invite;
 if (!empty($_POST['login']))
 {
   $mayPass = 0;
@@ -61,6 +69,14 @@ if (!empty($_POST['login']))
 
     if ($conn->query($sql) === TRUE) {
       $_SESSION['userSess'] = $user;
+
+      if ($linkPass == "invite")
+      {
+        Redirect("invite.php?leagueN=" . $leagueN . "&invite=" . $invite);
+      }
+      else {
+        Redirect("home.php");
+      }
     }
   }
   else {
@@ -90,14 +106,9 @@ if (!empty($_SESSION['userSess']))
     {
     echo '
     <div class="navButtonL">
-      <a href="home.html">Home</a>
+      <a href="home.php">Home</a>
     </div>
-    <div class="navButtonL">
-      <a href="#">League</a>
-    </div>
-    <div class="navButtonL">
-      <a href="#">Players</a>
-    </div>
+
     <div class="navButtonR">
       <a href="logout.php">Logout</a>
     </div>
@@ -110,14 +121,12 @@ if (!empty($_SESSION['userSess']))
     <div class="navButtonL">
       <a href="index.html">Home</a>
     </div>
-    <div class="navButtonL">
-      <a href="#">Players</a>
+
+    <div class="navButtonR">
+      <a href="login.php">Login</a>
     </div>
     <div class="navButtonR">
-      <a href="#">Login</a>
-    </div>
-    <div class="navButtonR">
-      <a href="#">Sign up</a>
+      <a href="signup.php">Sign up</a>
     </div>';
   }
   ?>

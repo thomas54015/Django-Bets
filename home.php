@@ -11,6 +11,163 @@ else {
   $uname = $_SESSION['userSess'];
 }
 
+$leagueP = "";
+
+$leagueP = $_REQUEST["leagueP"]; //pulls the get variable
+
+function leaguesData($servername, $username, $password, $dbname, $uname, $leagueP)
+{
+$urlMain = "localhost/Django-Bets/";
+//$urlMain = "www.djangosfantasycom/";
+
+$leagueAccess = 0;
+$leagueCaptin = "";
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    //error message if database connection fails.
+  }
+
+$sql = "SELECT * FROM leagues WHERE username = '$uname' AND league = '$leagueP'";
+/*This is the first mySQL. This selects data from the
+table users where the username colum is equal to the username input */
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+
+  while($row = $result->fetch_assoc()) {
+    $leagueCaptin = $row['leader'];
+
+    if ($uname == $leagueCaptin)
+    {
+      $leagueAccess = 2;
+    }
+    else
+    {
+      $leagueAccess = 1;
+    }
+  }
+}
+
+// If just a regular user, then we only want to show them other team users and points.
+/*
+<div class="leagueBox"><br>
+  Leaguename<br><br>
+
+  Team - TeamPoints<br><br>
+
+  player1 - points<br>
+  player2 - points<br>
+  player3 - points<br>
+  player4 - points<br>
+  player5 - points<br>
+  player6 - points<br>
+  player7 - points<br>
+  player8 - points<br>
+  player9 - points<br>
+  player10 - points<br>
+  player11 - points<br>
+</div>
+*/
+if ($leagueAccess == 1)
+{
+  echo $leagueP . '<br>';
+  echo "Points: 0<br><br>";
+
+  echo "League Captin: " . $leagueCaptin . "<br>";
+  echo "Players:<br>";
+  echo "1. " . $leagueCaptin . "<br>";
+
+  $sql = "SELECT * FROM invite WHERE league = '$leagueP' AND valid = '0'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 2;
+  if ($result->num_rows > 0) {
+    // output data of each row
+
+    while($row = $result->fetch_assoc()) {
+      echo $nameCount . ". " . $row['username'] . "<br>";
+
+      $nameCount++;
+
+    }
+  }
+  echo "<br>3 Winning Teams: <br>
+  1. Team 1<br>
+  2. Team 2<br>
+  3. Team 3<br>
+  <br>
+  Losing Team:<br>
+  1. Team 1<br>
+  <br>
+  ";
+}
+else if ($leagueAccess == 2)
+{
+  echo $leagueP . '<br>';
+  echo "Points: 0<br><br>";
+
+  echo "League Captin: " . $leagueCaptin . "<br>";
+  echo "* Send links to invite players *<br>";
+  echo "Players:<br>";
+  echo "1. " . $leagueCaptin . "<br>";
+
+  $sql = "SELECT * FROM invite WHERE league = '$leagueP' AND valid = '0'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 2;
+  if ($result->num_rows > 0) {
+    // output data of each row
+
+    while($row = $result->fetch_assoc()) {
+      echo $nameCount . ". " . $row['username'] . "<br>";
+
+      $nameCount++;
+
+    }
+  }
+
+  $sql = "SELECT * FROM invite WHERE league = '$leagueP' AND valid = '1'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    // output data of each row
+
+    while($row = $result->fetch_assoc()) {
+      echo $nameCount . ". " . $urlMain . "invite.php?leagueN=" . $leagueP . "&invite=" . $row['link'] . "<br>";
+      $nameCount++;
+
+    }
+  }
+  echo "<br>3 Winning Teams: <br>
+  1. Team 1<br>
+  2. Team 2<br>
+  3. Team 3<br>
+  <br>
+  Losing Team:<br>
+  1. Team 1<br>
+  <br>
+  ";
+}
+else
+{
+  echo "Invalid league or no league selected.<br>
+  You can select or create a league in left tool bar.";
+}
+
+
+}
+
+
 if (!empty($_POST['newLeagueB']))
 {
   $mayCreate = 1;
@@ -55,6 +212,24 @@ if (!empty($_POST['newLeagueB']))
     VALUES ('$leagueN', '$uname', '$uname', '$currentDT')";
 
     $conn->query($sql);
+
+    $numsTest = "";
+    for($i = 0; $i < 4; $i++) {
+      $numsTest .= $i;
+
+      //Verification code
+      $verifyCode = "";
+      $verifyChars = array_merge(range('a', 'z'), range(0,9));
+      for($j = 0; $j < 8; $j++) {
+              $verifyCode .= $verifyChars[array_rand($verifyChars)];
+      }
+
+      $sql = "INSERT INTO invite (link, league, username, valid)
+      VALUES ('$verifyCode', '$leagueN', '$uname', 1)";
+
+      $conn->query($sql);
+    }
+    echo "Loop check: " . $numsTest;
   }
   $conn->close();
 }
@@ -77,7 +252,7 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
       // output data of each row
       while($row = $result->fetch_assoc()) {
         $leagueN = $row['league'];
-        echo '<a href="league1">' . $leagueN . '</a> 0 <br>';
+        echo '<a href="home.php?leagueP=' . $leagueN . '">' . $leagueN . '</a> 0 <br>';
       }
     }
 }
@@ -105,18 +280,15 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
             <div class="navButtonL">
               <a href="home.php">Home</a>
             </div>
-            <div class="navButtonL">
-              <a href="#">League</a>
-            </div>
-            <div class="navButtonL">
-              <a href="#">Players</a>
-            </div>
+
             <div class="navButtonR">
               <a href="logout.php">Logout</a>
             </div>
             <div class="navButtonR">
               <a href="#">' . $_SESSION['userSess'] . '</a>
-            </div>';
+            </div>
+
+            ';
              ?>
           </div>
 
@@ -160,22 +332,11 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                 </div>
 
                 <div id="Team" class="tabcontent">
-                  <div class="leagueBox"><br>
-                    Leaguename<br><br>
+                  <div class="leagueBox">
+                    <?php
+                    leaguesData($servername, $username, $password, $dbname, $uname, $leagueP);
+                    ?>
 
-                    Team - TeamPoints<br><br>
-
-                    player1 - points<br>
-                    player2 - points<br>
-                    player3 - points<br>
-                    player4 - points<br>
-                    player5 - points<br>
-                    player6 - points<br>
-                    player7 - points<br>
-                    player8 - points<br>
-                    player9 - points<br>
-                    player10 - points<br>
-                    player11 - points<br>
                   </div>
                 </div>
                 <div id="Standings" class="tabcontent" style="margin:10px;margin-top:70px;">

@@ -2,20 +2,22 @@
 session_start();
 include "functions.php";
 
-$uname = "";
-if (!isset($_SESSION['userSess']))
-{
-  Redirect("login.php");
-}
-else {
-  $uname = $_SESSION['userSess'];
-}
+
 
 $leagueN = "";
 $invite = "";
 
 $leagueN = $_REQUEST["leagueN"]; //pulls the get variable
 $invite = $_REQUEST["invite"]; //pulls the get variable
+
+$uname = "";
+if (!isset($_SESSION['userSess']))
+{
+  Redirect("login.php?linkPass=invite&leagueN=" . $leagueN . "&invite=" . $invite);
+}
+else {
+  $uname = $_SESSION['userSess'];
+}
 
 // #############################
 // #### Invite varification ####

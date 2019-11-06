@@ -84,7 +84,7 @@ if (!empty($_POST['signup']))
 }
 if (!empty($_SESSION['userSess']))
 {
-  Redirect("home.html");
+  Redirect("home.php");
 }
 ?>
 <html>
@@ -103,14 +103,9 @@ if (!empty($_SESSION['userSess']))
     {
     echo '
     <div class="navButtonL">
-      <a href="home.html">Home</a>
+      <a href="home.php">Home</a>
     </div>
-    <div class="navButtonL">
-      <a href="#">League</a>
-    </div>
-    <div class="navButtonL">
-      <a href="#">Players</a>
-    </div>
+
     <div class="navButtonR">
       <a href="logout.php">Logout</a>
     </div>
@@ -123,14 +118,12 @@ if (!empty($_SESSION['userSess']))
     <div class="navButtonL">
       <a href="index.html">Home</a>
     </div>
-    <div class="navButtonL">
-      <a href="#">Players</a>
-    </div>
+
     <div class="navButtonR">
       <a href="login.php">Login</a>
     </div>
     <div class="navButtonR">
-      <a href="#">Sign up</a>
+      <a href="signup.php">Sign up</a>
     </div>';
   }
   ?>
