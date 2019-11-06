@@ -1,3 +1,262 @@
+<?php
+session_start();
+include "functions.php";
+
+$uname = "";
+if (!isset($_SESSION['userSess']))
+{
+  Redirect("login.php");
+}
+else {
+  $uname = $_SESSION['userSess'];
+}
+
+$leagueP = "";
+
+$leagueP = $_REQUEST["leagueP"]; //pulls the get variable
+
+function leaguesData($servername, $username, $password, $dbname, $uname, $leagueP)
+{
+$urlMain = "localhost/Django-Bets/";
+//$urlMain = "www.djangosfantasycom/";
+
+$leagueAccess = 0;
+$leagueCaptin = "";
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    //error message if database connection fails.
+  }
+
+$sql = "SELECT * FROM leagues WHERE username = '$uname' AND league = '$leagueP'";
+/*This is the first mySQL. This selects data from the
+table users where the username colum is equal to the username input */
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+
+  while($row = $result->fetch_assoc()) {
+    $leagueCaptin = $row['leader'];
+
+    if ($uname == $leagueCaptin)
+    {
+      $leagueAccess = 2;
+    }
+    else
+    {
+      $leagueAccess = 1;
+    }
+  }
+}
+
+// If just a regular user, then we only want to show them other team users and points.
+/*
+<div class="leagueBox"><br>
+  Leaguename<br><br>
+
+  Team - TeamPoints<br><br>
+
+  player1 - points<br>
+  player2 - points<br>
+  player3 - points<br>
+  player4 - points<br>
+  player5 - points<br>
+  player6 - points<br>
+  player7 - points<br>
+  player8 - points<br>
+  player9 - points<br>
+  player10 - points<br>
+  player11 - points<br>
+</div>
+*/
+if ($leagueAccess == 1)
+{
+  echo $leagueP . '<br>';
+  echo "Points: 0<br><br>";
+
+  echo "League Captin: " . $leagueCaptin . "<br>";
+  echo "Players:<br>";
+  echo "1. " . $leagueCaptin . "<br>";
+
+  $sql = "SELECT * FROM invite WHERE league = '$leagueP' AND valid = '0'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 2;
+  if ($result->num_rows > 0) {
+    // output data of each row
+
+    while($row = $result->fetch_assoc()) {
+      echo $nameCount . ". " . $row['username'] . "<br>";
+
+      $nameCount++;
+
+    }
+  }
+  echo "<br>3 Winning Teams: <br>
+  1. Team 1<br>
+  2. Team 2<br>
+  3. Team 3<br>
+  <br>
+  Losing Team:<br>
+  1. Team 1<br>
+  <br>
+  ";
+}
+else if ($leagueAccess == 2)
+{
+  echo $leagueP . '<br>';
+  echo "Points: 0<br><br>";
+
+  echo "League Captin: " . $leagueCaptin . "<br>";
+  echo "* Send links to invite players *<br>";
+  echo "Players:<br>";
+  echo "1. " . $leagueCaptin . "<br>";
+
+  $sql = "SELECT * FROM invite WHERE league = '$leagueP' AND valid = '0'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 2;
+  if ($result->num_rows > 0) {
+    // output data of each row
+
+    while($row = $result->fetch_assoc()) {
+      echo $nameCount . ". " . $row['username'] . "<br>";
+
+      $nameCount++;
+
+    }
+  }
+
+  $sql = "SELECT * FROM invite WHERE league = '$leagueP' AND valid = '1'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    // output data of each row
+
+    while($row = $result->fetch_assoc()) {
+      echo $nameCount . ". " . $urlMain . "invite.php?leagueN=" . $leagueP . "&invite=" . $row['link'] . "<br>";
+      $nameCount++;
+
+    }
+  }
+  echo "<br>3 Winning Teams: <br>
+  1. Team 1<br>
+  2. Team 2<br>
+  3. Team 3<br>
+  <br>
+  Losing Team:<br>
+  1. Team 1<br>
+  <br>
+  ";
+}
+else
+{
+  echo "Invalid league or no league selected.<br>
+  You can select or create a league in left tool bar.";
+}
+
+
+}
+
+
+if (!empty($_POST['newLeagueB']))
+{
+  $mayCreate = 1;
+  $leagueError = "";
+  $leagueN = $_POST['newLeagueT'];
+
+  if ($leagueN == "")
+  {
+    $leagueError = "The League name must not be blank!";
+    $mayCreate = 0;
+  }
+
+  // I knew this function existed, but refrenced from :https://www.w3schools.com/php/func_string_strtolower.asp#targetText=strtoupper()%20%2D%20converts%20a%20string,in%20a%20string%20to%20uppercase
+  // The reason I did this, is so that people cant have the same username with different caps.
+  $leagueN = strtolower($leagueN);
+  $conn = new mysqli($servername, $username, $password, $dbname);
+
+
+  // Check connection
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+      //error message if database connection fails.
+    }
+
+  $sql = "SELECT * FROM leagues WHERE league = '$leagueN'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+
+  // this looks to see if there are any resultsf from the sql.
+  if ($result->num_rows > 0) {
+    $leagueError = "Sorry, League name is already taken!";
+    $mayCreate = 0;
+  }
+
+  if ($mayCreate == 1) {
+    // refrenced: https://www.pontikis.net/tip/?id=18 for date('Y-m-d H:i:s')
+    $currentDT = date('Y-m-d H:i:s');
+    // refrenced: https://www.w3schools.com/php/php_mysql_insert.asp
+    $sql = "INSERT INTO leagues (league, username, leader, dateCreate)
+    VALUES ('$leagueN', '$uname', '$uname', '$currentDT')";
+
+    $conn->query($sql);
+
+    $numsTest = "";
+    for($i = 0; $i < 4; $i++) {
+      $numsTest .= $i;
+
+      //Verification code
+      $verifyCode = "";
+      $verifyChars = array_merge(range('a', 'z'), range(0,9));
+      for($j = 0; $j < 8; $j++) {
+              $verifyCode .= $verifyChars[array_rand($verifyChars)];
+      }
+
+      $sql = "INSERT INTO invite (link, league, username, valid)
+      VALUES ('$verifyCode', '$leagueN', '$uname', 1)";
+
+      $conn->query($sql);
+    }
+    echo "Loop check: " . $numsTest;
+  }
+  $conn->close();
+}
+
+function leaguesName($servername, $username, $password, $dbname, $uname)
+{
+  $conn = new mysqli($servername, $username, $password, $dbname);
+
+
+  // Check connection
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+      //error message if database connection fails.
+    }
+
+    $sql = "SELECT * FROM leagues WHERE username = '$uname'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $leagueN = $row['league'];
+        echo '<a href="home.php?leagueP=' . $leagueN . '">' . $leagueN . '</a> 0 <br>';
+      }
+    }
+}
+ ?>
 <!doctype html>
 
 <html lang="en">
@@ -15,19 +274,25 @@
             <img class="page-logo" src="./pics/logo.png" alt="logo">
           </div>
           <div class="navWrap">
-        
+
+            <?php
+            echo '
             <div class="navButtonL">
-              <a href="index.html">Home</a>
+              <a href="home.php">Home</a>
             </div>
             <div class="navButtonL">
-              <a href="playerInfo.html">Players</a>
+              <a href="#">League</a>
+            </div>
+            <div class="navButtonL">
+              <a href="#">Players</a>
             </div>
             <div class="navButtonR">
-              <a href="login.php">Login</a>
+              <a href="logout.php">Logout</a>
             </div>
             <div class="navButtonR">
-              <a href="signup.php">Sign up</a>
-            </div>
+              <a href="#">' . $_SESSION['userSess'] . '</a>
+            </div>';
+             ?>
           </div>
 
         <div class="wrapper">
@@ -36,62 +301,45 @@
                     <img class="profile-picture" alt="profile picture" src="pics/defaultprofile.png">
                 </a>
                 <div>
-                    USERNAME
+                    <?php
+                    echo $_SESSION['userSess'];
+                     ?>
                 </div>
                 <br><br>
                 <ul class="leagueList">
-                    <a href="league1">League1Name</a> 1Score <br>
-                    <a href="league2">League2Name</a> 2Score <br>
-                    <a href="league3">League3Name</a> 3Score <br>
+                    <?php
+                    leaguesName($servername, $username, $password, $dbname, $uname);
+                     ?>
                 </ul>
                 <div class="newLeague">
-                    <a href="#">➕ New League </a>
-                    <div class="tooltip">[?]
-                      <span class="tooltiptext">Create a new league!</span>
+                  <form action="<?php htmlspecialchars($_SERVER[' PHP_SELF ']); ?>" enctype="multipart/form-data" method="post">
+                    <div class="newLeagueL">
+                      Name:
                     </div>
+                    <input type="text" class="newLeagueT" name="newLeagueT" />
+                    <input type="submit" class="newLeagueB" name="newLeagueB" value="➕ Create League" />
+                  </form>
+                  <div class="newLeagueErr">
+                    <?php
+                    echo $leagueError;
+                     ?>
+                  </div>
                 </div>
                 <br><br>
                 <a class="twitter-timeline" data-height="500" data-theme="dark" href="https://twitter.com/premierleague?ref_src=twsrc%5Etfw">Tweets by premierleague</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
               </div>
             <div class="panel-center">
-                <div>
+                <div style="justify-content: center;">
                   <button class="tablink" onclick="openPage('Team', this, 'grey')">My Team</button>
                   <button class="tablink" onclick="openPage('Standings', this, 'grey')" id="defaultOpen">Standings</button>
                 </div>
-                
+
                 <div id="Team" class="tabcontent">
-                  <div class="leagueBox"><br>
-                    <table style="margin-left:auto; margin-right:auto; border-collapse:collapse;">
-                      <tbody>
-                        <tr>
-                          <th colspan="2" style="text-align: center; height: 100px;">(teamName)</th>
-                        </tr>
-                        <tr class="row">
-                          <td style="text-align: left;">Win %</td>
-                          <td style="text-align: right;">(winsPercent)</td>
-                        </tr>
-                        <tr class="row">
-                          <td style="text-align: left;">Wins</td>
-                          <td style="text-align: right;">(wins)</td>
-                        </tr>
-                        <tr class="row">
-                          <td style="text-align: left;">Losses</td>
-                          <td style="text-align: right;">(losses)</td>
-                        </tr>
-                        <tr class="row">
-                          <td style="text-align: left;">Draws</td>
-                          <td style="text-align: right;">(draws)</td>
-                        </tr>
-                        <tr class="row">
-                          <td style="text-align: left;">Goals</td>
-                          <td style="text-align: right;">(goals)</td>
-                        </tr>
-                        <tr class="row">
-                          <td style="text-align: left;">Conceded Goals</td>
-                          <td style="text-align: right;">(cGoals)</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <div class="leagueBox">
+                    <?php
+                    leaguesData($servername, $username, $password, $dbname, $uname, $leagueP);
+                    ?>
+
                   </div>
                 </div>
                 <div id="Standings" class="tabcontent" style="margin:10px;margin-top:70px;">
@@ -106,19 +354,16 @@
                     for (i = 0; i < tabcontent.length; i++) {
                       tabcontent[i].style.display = "none";
                     }
-                    tablinks = document.getElementsByClassName("tablink");
-                    for (i = 0; i < tablinks.length; i++) {
-                      tablinks[i].style.backgroundColor = "";
-                    }
                     document.getElementById(pageName).style.display = "block";
-                    elmnt.style.backgroundColor = color;
                   }
+
+                  // Get the element with id="defaultOpen" and click on it
                   document.getElementById("defaultOpen").click();
                 </script>
             </div>
             <div class="panel-right">
-              <div class="chatango" style="margin:15px">
-                <script id="cid0020000232581953035" data-cfasync="false" async src="https://st.chatango.com/js/gz/emb.js" style="width: 100%;height: 750px;margin: 15px">{"handle":"djangofan","arch":"js","styles":{"a":"6600cc","b":100,"c":"FFFFFF","d":"FFFFFF","k":"6600cc","l":"6600cc","m":"6600cc","n":"FFFFFF","p":"10","q":"6600cc","r":100,"t":0,"ab":false,"usricon":0,"surl":0,"allowpm":0,"fwtickm":1}}</script>
+              <div>
+                <iframe src='https://minnit.chat/Django?embed&&nickname=' style='border:none;width:90%;height:750px;margin:15px;' allowTransparency='true'></iframe>
               </div>
             </div>
         </div>
