@@ -51,9 +51,30 @@ if (!empty($_POST['signup']))
   if ($maySign == 1) {
     // refrenced: https://www.pontikis.net/tip/?id=18 for date('Y-m-d H:i:s')
     $currentDT = date('Y-m-d H:i:s');
+
+
+  $salt = "";
+  // The pepper is so that if somone manages to get the database, then
+  // they still may have a hard time cracking common hashes. the pepper
+  // gets added to the password (in our case the end), to make it less common
+  // of a password for hashes. It would slow the attacker down to not have both
+  // the salt and pepper. which would mean he would need access to the code,
+  // and get into the database.
+  $pepper = $user . "rR@gt5!ic6";
+
+  // This is creating the salt, pretty much a range of letters and numbers 22 chars long.
+  $saltOptions = array_merge(range('A','Z'), range('a', 'z'), range(0,9));
+  for($i = 0; $i < 22; $i++)
+  {
+      $salt .= $saltOptions[array_rand($saltOptions)];
+  }
+  // adding the pepper to the end of the password.
+  $pass .= $pepper;
+  $pass = crypt($pass, sprintf('$2y$%02d$', 9) . $salt);
+
     // refrenced: https://www.w3schools.com/php/php_mysql_insert.asp
-    $sql = "INSERT INTO users (username, password, type, signupdate, lastlog)
-    VALUES ('$user', '$pass', 1, '$currentDT', '$currentDT')";
+    $sql = "INSERT INTO users (username, password, salt, type, signupdate, lastlog)
+    VALUES ('$user', '$pass', '$salt', 1, '$currentDT', '$currentDT')";
 
     if ($conn->query($sql) === TRUE) {
       $_SESSION['userSess'] = $user;

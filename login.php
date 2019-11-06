@@ -23,7 +23,7 @@ if (!empty($_POST['login']))
       //error message if database connection fails.
     }
 
-  $sql = "SELECT password FROM users WHERE username = '$user'";
+  $sql = "SELECT * FROM users WHERE username = '$user'";
   /*This is the first mySQL. This selects data from the
   table users where the username colum is equal to the username input */
 
@@ -33,7 +33,21 @@ if (!empty($_POST['login']))
     // output data of each row
     while($row = $result->fetch_assoc()) {
       $realPass = $row['password'];
-      if ($pass == $realPass)
+      $salt = $row['salt'];
+
+
+      // I explained most of how this works on the signup, I think the important
+      // part here is to know that we arn't really comparing passwords. We are
+      // comparing the hashed version of passwords. The inputed password is
+      // hashed to be compared to the hashed password in the database.
+      $pepper = $user . "rR@gt5!ic6";
+
+      // adding the pepper to the end of the password.
+      $hashpass = $pass . $pepper;
+      $hashpass = crypt($hashpass, sprintf('$2y$%02d$', 9) . $salt);
+      echo $hashpass . " " . $salt;
+
+      if ($hashpass == $realPass)
       {
         $mayPass = 1;
       }
@@ -57,7 +71,7 @@ if (!empty($_POST['login']))
 }
 if (!empty($_SESSION['userSess']))
 {
-  Redirect("home.html");
+  Redirect("home.php");
 }
 ?>
 <html>
