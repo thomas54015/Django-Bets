@@ -26,7 +26,7 @@ function leaguesData($servername, $username, $password, $dbname, $uname, $league
   //#####################################################
 
 $urlMain = "localhost/Django-Bets/";
-//$urlMain = "www.djangosfantasycom/";
+//$urlMain = "www.djangosfantasy.com/";
 
 $leagueAccess = 0;
 $leagueCaptin = "";
