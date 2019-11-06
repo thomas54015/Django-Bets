@@ -53,7 +53,7 @@ if (!empty($_POST['login']))
       // adding the pepper to the end of the password.
       $hashpass = $pass . $pepper;
       $hashpass = crypt($hashpass, sprintf('$2y$%02d$', 9) . $salt);
-      echo $hashpass . " " . $salt;
+      //echo $hashpass . " " . $salt;
 
       if ($hashpass == $realPass)
       {
