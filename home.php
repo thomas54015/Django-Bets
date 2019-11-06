@@ -17,6 +17,14 @@ $leagueP = $_REQUEST["leagueP"]; //pulls the get variable
 
 function leaguesData($servername, $username, $password, $dbname, $uname, $leagueP)
 {
+  
+  //#####################################################
+  //#####################################################
+  //######### DO NOT FORGET TO CHANGE LINKPASS  #########
+  //######### IN HOME.PHP BEFORE UPLOADING SITE #########
+  //#####################################################
+  //#####################################################
+
 $urlMain = "localhost/Django-Bets/";
 //$urlMain = "www.djangosfantasycom/";
 

@@ -10,6 +10,15 @@ $password = "bestgroup";
 // best!Group
 $dbname = "django";
 
+
+//#####################################################
+//#####################################################
+//######### DO NOT FORGET TO CHANGE LINKPASS  #########
+//######### IN HOME.PHP BEFORE UPLOADING SITE #########
+//#####################################################
+//#####################################################
+
+//
 /*
 //This is for the online site.
 $servername = "mysql.djangosfantasy.com";
