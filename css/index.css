@@ -9,6 +9,13 @@ body {
     margin: 0px;
 }
 
+video {
+	width: 700px;
+	height: 400px;
+	position: center;
+}
+
+
 .banner {
 
   background: #424242;
@@ -30,7 +37,7 @@ body {
   overflow: auto;
   margin: auto;
   width: 1200px;
-  height: 545px;
+  height: auto;
   padding: 10px;
 }
 
