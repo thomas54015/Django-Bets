@@ -50,6 +50,11 @@
     float: left;
     border: 1px solid black;
 }
+
+.group {
+  padding-right: 35px;
+  text-align: right;
+}
 .center {
     height: inherit;
     width: 500px;
@@ -85,7 +90,10 @@
   font-size: 16px;
   cursor: pointer;
   text-align: center;
+  transition: .9s;
 }
+
+
 
 .players {
   display: inline;
