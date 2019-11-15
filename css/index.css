@@ -1,4 +1,6 @@
 <!--Taken From login.css by Thomas for consistency-->
+{}
+
 body {
     background: #000000;
     color: white;
@@ -26,6 +28,6 @@ body {
   overflow: auto;
   margin: auto;
   width: 1200px;
-  height: 500px;
+  height: 545px;
   padding: 10px;
 }
