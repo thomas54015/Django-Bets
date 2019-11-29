@@ -21,6 +21,17 @@ body {
     height: 70px;
 }
 
+.grid {
+    width: 380px;
+    height: 575px;
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #424242;
+    padding: 5px;
+    grid-template-columns: auto auto auto auto;
+}
+
 .infoBox {
     width: 700px;
     height: 700px;
@@ -87,22 +98,34 @@ li {
     text-decoration: none;
     width: 140px;
 }
+
+.selection-panel {
+    padding: 50px 10px;
+    height: inherit;
+    width: 305px;
+    position: relative;
+    float: left;
+}
   
 .tablink {
-    background-color: #555;
+    background-color: #424242;
     color: white;
     float: left;
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
     font-size: 17px;
-    width: 25%;
+    width: 75px;
+    height: auto;
+    max-height: 75px;
   }
-  
-  .tablink:hover {
-    background-color: #777;
-  }
+
+.thumbnail
+{
+    width: 80px;
+    height: auto;
+    max-height: 80px;
+}
 
 .wrapper {
     background-color: #212121;

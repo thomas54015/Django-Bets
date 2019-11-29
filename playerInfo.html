@@ -31,11 +31,108 @@
         </div>
 
         <div class="wrapper">
-            <div style="height:inherit; width:302px; float:left;">
-                <div style="margin:14px">
-                    <a class="twitter-timeline" data-width="275" data-height="775" data-theme="dark" href="https://twitter.com/NicolasPepe19">Tweets by NicolasPepe19</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <div>
+                <div class="selection-panel">
+                    <div class="grid">
+                        <button class="tablink" onclick="openPage('Arsenal', this, 'grey')">
+                            <img src="pics/teamIcons/arsenal.png" alt="Arsenal" class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('Aston', this, 'grey')"> 
+                            <img src="pics/teamIcons/astonvila.png" alt="Aston Villa F.C." class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('AFC', this, 'grey')"> 
+                            <img src="pics/teamIcons/afcbourne.png" alt="A.F.C. Bournemouth" class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('Brighton', this, 'grey')"> 
+                            <img src="pics/teamIcons/brighton.png" alt="Brighton & Hove Albion" class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('Burnley', this, 'grey')"> 
+                            <img src="pics/teamIcons/burnley.jpg" alt="Burnley F.C." class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('Chelsea', this, 'grey')"> 
+                            <img src="pics/teamIcons/chelsea.jpg" alt="Chelsea F.C." class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('Crystal', this, 'grey')"> 
+                            <img src="pics/teamIcons/crystal.png" alt="Crystal Palace F.C." class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('Everton', this, 'grey')"> 
+                            <img src="pics/teamIcons/everton.png" alt="Everton F.C." class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('Leicester', this, 'grey')"> 
+                            <img src="pics/teamIcons/leicester.png" alt="Leicester F.C." class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('Liverpool', this, 'grey')"> 
+                            <img src="pics/teamIcons/liverpool.jpg" alt="Liverpool F.C." class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('ManCity', this, 'grey')"> 
+                            <img src="pics/teamIcons/manCity.png" alt="Manchester City F.C." class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('ManU', this, 'grey')"> 
+                            <img src="pics/teamIcons/manU.png" alt="Manchester United F.C." class="thumbnail">
+                        </button>
+                  
+                        <button class="tablink" onclick="openPage('Newcastle', this, 'grey')"> 
+                            <img src="pics/teamIcons/newcastle.jpg" alt="Newcastle United F.C." class="thumbnail">
+                        </button>
+
+                        <button class="tablink" onclick="openPage('Norwich', this, 'grey')"> 
+                            <img src="pics/teamIcons/norwich.png" alt="Norwich F.C." class="thumbnail">
+                        </button>
+
+                        <button class="tablink" onclick="openPage('Sheffiled', this, 'grey')"> 
+                            <img src="pics/teamIcons/sheffield.png" alt="Sheffiled United F.C." class="thumbnail">
+                        </button>
+
+                        <button class="tablink" onclick="openPage('Southampton', this, 'grey')"> 
+                            <img src="pics/teamIcons/southampton.png" alt="Southampton F.C." class="thumbnail">
+                        </button>
+
+                        <button class="tablink" onclick="openPage('Tottenham', this, 'grey')"> 
+                            <img src="pics/teamIcons/tottenham.png" alt="Tottenham Hotspurs F.C." class="thumbnail">
+                        </button>
+
+                        <button class="tablink" onclick="openPage('Watford', this, 'grey')"> 
+                            <img src="pics/teamIcons/watford.png" alt="Watford F.C." class="thumbnail">
+                        </button>
+
+                        <button class="tablink" onclick="openPage('WestHam', this, 'grey')"> 
+                            <img src="pics/teamIcons/westHam.png" alt="West Ham United F.C." class="thumbnail">
+                        </button>
+
+                        <button class="tablink" onclick="openPage('Wolverhampton', this, 'grey')"> 
+                            <img src="pics/teamIcons/wolver.png" alt="Wolverhampton Wanderers F.C." class="thumbnail">
+                        </button>          
+                    </div>
                 </div>
             </div>
+
+            <script>
+                //This bit of code allows the user to switch between different teams
+                //script and code for buttons found at https://www.w3schools.com/howto/howto_js_full_page_tabs.asp
+                function openPage(pageName,elmnt,color) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                    }
+                    document.getElementById(pageName).style.display = "block";
+                }
+
+                // Get the element with id="defaultOpen" and click on it
+                document.getElementById("defaultOpen").click();
+            </script>
+
             <div class="infoWrapper">
                 <ul class="infoBox" style="border-bottom:1px solid white;">
                     <li>Name   Team   Flag   Position   Goals   Shots   %   Penalties   </li>
