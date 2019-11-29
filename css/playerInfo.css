@@ -23,7 +23,7 @@ body {
 
 .grid {
     width: 380px;
-    height: 575px;
+    height: 500px;
     display: grid;
     margin-left: auto;
     margin-right: auto;
@@ -43,15 +43,11 @@ body {
 
 .infoWrapper {
     height: 800px;
-    width: 915px;
+    width: 780px;
     word-break: break-word;
     display: block;
     margin-left: auto;
     margin-right: 10px;
-}
-
-li {
-    list-style-type: none;
 }
 
 .navWrap {
@@ -97,6 +93,11 @@ li {
     display: block;
     text-decoration: none;
     width: 140px;
+}
+
+.row {
+    border-bottom: solid #888;
+    height: 50px;
 }
 
 .selection-panel {
