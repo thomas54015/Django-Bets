@@ -1,6 +1,8 @@
 import http.client
 import mysql.connector
 
+conn = http.client.HTTPSConnection("sportsop-soccer-sports-open-data-v1.p.rapidapi.com")
+
 headers = {
     'x-rapidapi-host': "sportsop-soccer-sports-open-data-v1.p.rapidapi.com",
     'x-rapidapi-key': "4777a60297msh383d23636d01510p16375ejsn40230e12fcd8"  # requests are limited to 100/day
@@ -33,18 +35,26 @@ for x in dx:
     f.write(name+","+wins+","+loss+","+tie+","+points+","+scores+","+conceded+","+matchesplayed+"\n")
 f.close()
 
-# mydb = mysql.connector.connect(
-#     host='localhost',
-#     user='root',
-#     passwd='',
-#     database='djangosfantasy'
-# )
-# if mydb.is_connected():
-#     cursor = mydb.cursor()
-#     query = ("SELECT * FROM teams")
-#     cursor.execute(query)
-#     for (team, wins, losses, draws, points, scores, conceded, played) in cursor:
-#         print(team)
-# else:
-#     print("Could not connect to database, please check host,user,passwd")
-# conn = http.client.HTTPSConnection("sportsop-soccer-sports-open-data-v1.p.rapidapi.com")
+mydb = mysql.connector.connect(
+    host='localhost',
+    user='root',
+    passwd='',
+    database='djangosfantasy'
+)
+
+if mydb.is_connected():
+    f = open('data1.csv')
+    for x in f:
+        team, wins, losses, draws, points, scores, conceded, played = x.split(',')
+        if team == "Team":
+            continue
+        cursor = mydb.cursor()
+        query = ("UPDATE teams "
+                 "SET wins="+wins+", losses="+losses+", draws="+draws+", points="+points+", scores="+scores +
+                 ", conceded="+conceded+", played="+played +
+                 "WHERE team="+team)
+        cursor.execute(query)
+    mydb.commit()
+
+else:
+    print("Could not connect to database, please check host,user,passwd")
