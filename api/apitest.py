@@ -1,6 +1,5 @@
 import http.client
-
-conn = http.client.HTTPSConnection("sportsop-soccer-sports-open-data-v1.p.rapidapi.com")
+import mysql.connector
 
 headers = {
     'x-rapidapi-host': "sportsop-soccer-sports-open-data-v1.p.rapidapi.com",
@@ -33,3 +32,19 @@ for x in dx:
     matchesplayed = x.split("\"")[22].strip(":,")
     f.write(name+","+wins+","+loss+","+tie+","+points+","+scores+","+conceded+","+matchesplayed+"\n")
 f.close()
+
+# mydb = mysql.connector.connect(
+#     host='localhost',
+#     user='root',
+#     passwd='',
+#     database='djangosfantasy'
+# )
+# if mydb.is_connected():
+#     cursor = mydb.cursor()
+#     query = ("SELECT * FROM teams")
+#     cursor.execute(query)
+#     for (team, wins, losses, draws, points, scores, conceded, played) in cursor:
+#         print(team)
+# else:
+#     print("Could not connect to database, please check host,user,passwd")
+# conn = http.client.HTTPSConnection("sportsop-soccer-sports-open-data-v1.p.rapidapi.com")
