@@ -330,8 +330,8 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
               </div>
             <div class="panel-center">
                 <div style="justify-content: center;">
-                  <button class="tablink" onclick="openPage('Team', this, 'grey')">My Team</button>
-                  <button class="tablink" onclick="openPage('Standings', this, 'grey')" id="defaultOpen">Standings</button>
+                  <button class="tablink" onclick="openPage('Team', this, 'grey')" id="team">My Team</button>
+                  <button class="tablink" onclick="openPage('Standings', this, 'grey')" id="standings">Standings</button>
                 </div>
 
                 <div id="Team" class="tabcontent">
@@ -357,8 +357,11 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                     document.getElementById(pageName).style.display = "block";
                   }
 
-                  // Get the element with id="defaultOpen" and click on it
-                  document.getElementById("defaultOpen").click();
+                  //gives the frame a chance to load before automatically clicking to the team page
+                  window.onload=function(){
+                    document.getElementById("standings").click();
+                    openPage('team', this, 'grey');
+                  };
                 </script>
             </div>
             <div class="panel-right">
