@@ -9,10 +9,10 @@ body {
     margin: 0px;
 }
 
-video {
+#video {
 	width: 700px;
 	height: 400px;
-	position: center;
+	background-color: white;
 }
 
 
@@ -43,7 +43,6 @@ video {
 
 .welcome {
 	text-align: center;
-	
 }
 
 .navWrap {
