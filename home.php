@@ -284,11 +284,14 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
           <div class="navWrap">
 
             <?php
-            echo '
+            echo 
             <div class="navButtonL">
               <a href="home.php">Home</a>
             </div>
-
+            <div class="navButtonL">
+              <a href="teamInfo.html">Teams</a>
+            </div>
+            '
             <div class="navButtonR">
               <a href="logout.php">Logout</a>
             </div>
