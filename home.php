@@ -314,8 +314,30 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                 </a>
                 <div>
                     <?php
+                    function updatebutton() { 
+                        $command = escapeshellcmd('./api/mypython/python ./api/apitest.py');
+                        $output = shell_exec($command);
+                        echo $output . "<br>Tables Successfully Updated<br>";
+                        
+                    }
                     echo $_SESSION['userSess'];
-                     ?>
+                    if ($_SESSION['userSess'] == "daniluk") {
+                      echo "<br><br>";
+                      if (array_key_exists('updatebutton', $_POST)) {
+                        updatebutton();
+                      }
+                      
+                      echo "DEV: this will run python script 100/day";
+                      echo '<form method="post"> 
+                      <input type="submit" name="updatebutton"
+                        class="button" value="Update Teams" /> ';
+                    }
+                    
+                    ?>
+                <br>
+                      
+                    
+                     
                 </div>
                 <br><br>
                 <ul class="leagueList">
