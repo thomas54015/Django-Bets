@@ -309,7 +309,7 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
 
         <div class="wrapper">
             <div class="panel-left">
-                <a href="profile.html" class="profile">
+                <a href="profile.php" class="profile">
                     <img class="profile-picture" alt="profile picture" src="pics/defaultprofile.png">
                 </a>
                 <div>
