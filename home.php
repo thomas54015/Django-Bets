@@ -37,7 +37,7 @@ if ($conn->connect_error) {
     //error message if database connection fails.
   }
 
-$sql = "SELECT * FROM leagues WHERE username = '$uname' AND league = '$leagueP'";
+$sql = "SELECT * FROM leagues WHERE username = '$uname' AND league = '$leagueP' AND valid = '1'";
 /*This is the first mySQL. This selects data from the
 table users where the username colum is equal to the username input */
 
@@ -89,17 +89,20 @@ if ($leagueAccess == 1)
   echo "Players:<br>";
   echo "1. " . $leagueCaptin . "<br>";
 
-  $sql = "SELECT * FROM invite WHERE league = '$leagueP' AND valid = '0'";
+  $sql = "SELECT * FROM leagues WHERE league = '$leagueP' AND valid = '1'";
   /*This is the first mySQL. This selects data from the
   table users where the username colum is equal to the username input */
 
   $result = $conn->query($sql);
-  $nameCount = 2;
+  $nameCount = 1;
   if ($result->num_rows > 0) {
     // output data of each row
 
     while($row = $result->fetch_assoc()) {
-      echo $nameCount . ". " . $row['username'] . "<br>";
+      if ($row['username'] != $leagueCaptin)
+      {
+        echo $nameCount . ". " . $row['username'] . "<br>";
+      }
 
       $nameCount++;
 
@@ -117,6 +120,7 @@ if ($leagueAccess == 1)
 }
 else if ($leagueAccess == 2)
 {
+  // This is for the league captian.
   echo $leagueP . '<br>';
   echo "Points: 0<br><br>";
 
@@ -125,17 +129,20 @@ else if ($leagueAccess == 2)
   echo "Players:<br>";
   echo "1. " . $leagueCaptin . "<br>";
 
-  $sql = "SELECT * FROM invite WHERE league = '$leagueP' AND valid = '0'";
+  $sql = "SELECT * FROM leagues WHERE league = '$leagueP' AND valid = '1'";
   /*This is the first mySQL. This selects data from the
   table users where the username colum is equal to the username input */
 
   $result = $conn->query($sql);
-  $nameCount = 2;
+  $nameCount = 1;
   if ($result->num_rows > 0) {
     // output data of each row
 
     while($row = $result->fetch_assoc()) {
-      echo $nameCount . ". " . $row['username'] . "<br>";
+      if ($row['username'] != $leagueCaptin)
+      {
+        echo $nameCount . ". " . $row['username'] . ' <a href="delete.php?leagueN=' . $leagueP . '&delUser=' . $row['username'] . '">Delete</a><br>';
+      }
 
       $nameCount++;
 
@@ -216,8 +223,8 @@ if (!empty($_POST['newLeagueB']))
     // refrenced: https://www.pontikis.net/tip/?id=18 for date('Y-m-d H:i:s')
     $currentDT = date('Y-m-d H:i:s');
     // refrenced: https://www.w3schools.com/php/php_mysql_insert.asp
-    $sql = "INSERT INTO leagues (league, username, leader, dateCreate)
-    VALUES ('$leagueN', '$uname', '$uname', '$currentDT')";
+    $sql = "INSERT INTO leagues (league, username, leader, dateCreate, valid)
+    VALUES ('$leagueN', '$uname', '$uname', '$currentDT', 1)";
 
     $conn->query($sql);
 
@@ -253,7 +260,7 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
       //error message if database connection fails.
     }
 
-    $sql = "SELECT * FROM leagues WHERE username = '$uname'";
+    $sql = "SELECT * FROM leagues WHERE username = '$uname' AND valid='1'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -308,32 +315,16 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                 <div>
                     <?php
                     echo $_SESSION['userSess'];
-                    ?>
+                     ?>
                 </div>
-                <br>
-                <?php
-                    if (array_key_exists('updatebutton', $_POST)) {
-                      updatebutton();
-                    }
-                    function updatebutton() { 
-                      $command = escapeshellcmd('./api/mypython/python ./api/apitest.py');
-                      $output = shell_exec($command);
-                      echo $output;
-                      
-                    }
-                    echo "DEV: this will run python script 100/day"
-                    ?>
-                    <form method="post"> 
-                      <input type="submit" name="updatebutton"
-                        class="button" value="Update Teams" /> 
-                <br>
+                <br><br>
                 <ul class="leagueList">
                     <?php
                     leaguesName($servername, $username, $password, $dbname, $uname);
                      ?>
                 </ul>
                 <div class="newLeague">
-                  <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" method="post">
+                  <form action="<?php htmlspecialchars($_SERVER[' PHP_SELF ']); ?>" enctype="multipart/form-data" method="post">
                     <div class="newLeagueL">
                       Name:
                     </div>
