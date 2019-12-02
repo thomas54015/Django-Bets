@@ -130,7 +130,7 @@ if (!empty($_SESSION['userSess']))
   </div>
   <div class="main">
     <div class="loginWrap">
-      <form action="<?php htmlspecialchars($_SERVER[' PHP_SELF ']); ?>" enctype="multipart/form-data" method="post">
+      <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" method="post">
       <div class="cTitle">
       Signup For Django
     </div>

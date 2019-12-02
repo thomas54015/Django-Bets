@@ -37,7 +37,7 @@ if ($conn->connect_error) {
     //error message if database connection fails.
   }
 
-$sql = "SELECT * FROM leagues WHERE username = '$uname' AND league = '$leagueP'";
+$sql = "SELECT * FROM leagues WHERE username = '$uname' AND league = '$leagueP' AND valid = '1'";
 /*This is the first mySQL. This selects data from the
 table users where the username colum is equal to the username input */
 
@@ -89,17 +89,20 @@ if ($leagueAccess == 1)
   echo "Players:<br>";
   echo "1. " . $leagueCaptin . "<br>";
 
-  $sql = "SELECT * FROM invite WHERE league = '$leagueP' AND valid = '0'";
+  $sql = "SELECT * FROM leagues WHERE league = '$leagueP' AND valid = '1'";
   /*This is the first mySQL. This selects data from the
   table users where the username colum is equal to the username input */
 
   $result = $conn->query($sql);
-  $nameCount = 2;
+  $nameCount = 1;
   if ($result->num_rows > 0) {
     // output data of each row
 
     while($row = $result->fetch_assoc()) {
-      echo $nameCount . ". " . $row['username'] . "<br>";
+      if ($row['username'] != $leagueCaptin)
+      {
+        echo $nameCount . ". " . $row['username'] . "<br>";
+      }
 
       $nameCount++;
 
@@ -117,6 +120,7 @@ if ($leagueAccess == 1)
 }
 else if ($leagueAccess == 2)
 {
+  // This is for the league captian.
   echo $leagueP . '<br>';
   echo "Points: 0<br><br>";
 
@@ -125,17 +129,20 @@ else if ($leagueAccess == 2)
   echo "Players:<br>";
   echo "1. " . $leagueCaptin . "<br>";
 
-  $sql = "SELECT * FROM invite WHERE league = '$leagueP' AND valid = '0'";
+  $sql = "SELECT * FROM leagues WHERE league = '$leagueP' AND valid = '1'";
   /*This is the first mySQL. This selects data from the
   table users where the username colum is equal to the username input */
 
   $result = $conn->query($sql);
-  $nameCount = 2;
+  $nameCount = 1;
   if ($result->num_rows > 0) {
     // output data of each row
 
     while($row = $result->fetch_assoc()) {
-      echo $nameCount . ". " . $row['username'] . "<br>";
+      if ($row['username'] != $leagueCaptin)
+      {
+        echo $nameCount . ". " . $row['username'] . ' <a href="delete.php?leagueN=' . $leagueP . '&delUser=' . $row['username'] . '">Delete</a><br>';
+      }
 
       $nameCount++;
 
@@ -216,8 +223,8 @@ if (!empty($_POST['newLeagueB']))
     // refrenced: https://www.pontikis.net/tip/?id=18 for date('Y-m-d H:i:s')
     $currentDT = date('Y-m-d H:i:s');
     // refrenced: https://www.w3schools.com/php/php_mysql_insert.asp
-    $sql = "INSERT INTO leagues (league, username, leader, dateCreate)
-    VALUES ('$leagueN', '$uname', '$uname', '$currentDT')";
+    $sql = "INSERT INTO leagues (league, username, leader, dateCreate, valid)
+    VALUES ('$leagueN', '$uname', '$uname', '$currentDT', 1)";
 
     $conn->query($sql);
 
@@ -253,7 +260,7 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
       //error message if database connection fails.
     }
 
-    $sql = "SELECT * FROM leagues WHERE username = '$uname'";
+    $sql = "SELECT * FROM leagues WHERE username = '$uname' AND valid='1'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -304,13 +311,35 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
 
         <div class="wrapper">
             <div class="panel-left">
-                <a href="profile.html" class="profile">
+                <a href="profile.php" class="profile">
                     <img class="profile-picture" alt="profile picture" src="pics/defaultprofile.png">
                 </a>
                 <div>
                     <?php
+                    function updatebutton() { 
+                        $command = escapeshellcmd('./api/mypython/python ./api/apitest.py');
+                        $output = shell_exec($command);
+                        echo $output . "<br>Tables Successfully Updated<br>";
+                        
+                    }
                     echo $_SESSION['userSess'];
-                     ?>
+                    if ($_SESSION['userSess'] == "daniluk") {
+                      echo "<br><br>";
+                      if (array_key_exists('updatebutton', $_POST)) {
+                        updatebutton();
+                      }
+                      
+                      echo "DEV: this will run python script 100/day";
+                      echo '<form method="post"> 
+                      <input type="submit" name="updatebutton"
+                        class="button" value="Update Teams" /> ';
+                    }
+                    
+                    ?>
+                <br>
+                      
+                    
+                     
                 </div>
                 <br><br>
                 <ul class="leagueList">
@@ -337,8 +366,8 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
               </div>
             <div class="panel-center">
                 <div style="justify-content: center;">
-                  <button class="tablink" onclick="openPage('Team', this, 'grey')">My Team</button>
-                  <button class="tablink" onclick="openPage('Standings', this, 'grey')" id="defaultOpen">Standings</button>
+                  <button class="tablink" onclick="openPage('Team', this, 'grey')" id="team">My Team</button>
+                  <button class="tablink" onclick="openPage('Standings', this, 'grey')" id="standings">Standings</button>
                 </div>
 
                 <div id="Team" class="tabcontent">
@@ -364,8 +393,11 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                     document.getElementById(pageName).style.display = "block";
                   }
 
-                  // Get the element with id="defaultOpen" and click on it
-                  document.getElementById("defaultOpen").click();
+                  //gives the frame a chance to load before automatically clicking to the team page
+                  window.onload=function(){
+                    document.getElementById("standings").click();
+                    setTimeout(openPage('Team', this, 'grey'), 3000);
+                  };
                 </script>
             </div>
             <div class="panel-right">

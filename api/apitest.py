@@ -1,4 +1,5 @@
 import http.client
+import mysql.connector
 
 conn = http.client.HTTPSConnection("sportsop-soccer-sports-open-data-v1.p.rapidapi.com")
 
@@ -33,3 +34,27 @@ for x in dx:
     matchesplayed = x.split("\"")[22].strip(":,")
     f.write(name+","+wins+","+loss+","+tie+","+points+","+scores+","+conceded+","+matchesplayed+"\n")
 f.close()
+
+mydb = mysql.connector.connect(
+    host='localhost',
+    user='djangoadmin',
+    passwd='bestgroup',
+    database='django'
+)
+
+if mydb.is_connected():
+    f = open('data1.csv')
+    for x in f:
+        team, wins, losses, draws, points, scores, conceded, played = x.split(',')
+        if team == "Team":
+            continue
+        cursor = mydb.cursor()
+        query = ("UPDATE teams "
+                 "SET wins="+wins+", losses="+losses+", draws="+draws+", points="+points+", scores="+scores +
+                 ", conceded="+conceded+", played="+played +
+                 "WHERE team="+team)
+        cursor.execute(query)
+    mydb.commit()
+
+else:
+    print("Could not connect to database, please check host,user,passwd")

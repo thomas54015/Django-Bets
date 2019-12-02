@@ -11,6 +11,8 @@ $leagueN = $_REQUEST["leagueN"]; //pulls the get variable
 $invite = $_REQUEST["invite"]; //pulls the get variable
 
 $uname = "";
+$inviteErr = "";
+
 if (!isset($_SESSION['userSess']))
 {
   Redirect("login.php?linkPass=invite&leagueN=" . $leagueN . "&invite=" . $invite);
@@ -52,7 +54,7 @@ if ($conn->connect_error) {
     $canRegister = 1;
   }
   else {
-    echo "Error: Invalid invite or invite already used!";
+    $inviteErr = "Error: Invalid invite or invite already used!";
   }
 
 
@@ -62,7 +64,7 @@ if ($conn->connect_error) {
   if ($result->num_rows > 0) {
     // output data of each row
     $canRegister = 0;
-    echo "Error: You already belong to this league!";
+    $inviteErr = "Error: You already belong to this league!";
 
   }
 
@@ -74,8 +76,8 @@ if ($conn->connect_error) {
 
     $currentDT = date('Y-m-d H:i:s');
 
-    $sql = "INSERT INTO leagues (league, username, leader, dateCreate)
-    VALUES ('$leagueN', '$uname', '$captin', '$currentDT')";
+    $sql = "INSERT INTO leagues (league, username, leader, dateCreate, valid)
+    VALUES ('$leagueN', '$uname', '$captin', '$currentDT', 1)";
 
     $conn->query($sql);
     Redirect("home.php");
@@ -86,3 +88,35 @@ if ($conn->connect_error) {
 
 
 ?>
+
+<html>
+<head>
+  <title>Invite</title>
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="icon" href="./pics/danjosfantasy.jpg">
+</head>
+<body>
+  <div class="banner">
+    <img class="page-logo" src="./pics/logo.png" alt="logo">
+  </div>
+  <div class="navWrap">
+
+    <div class="navButtonL">
+      <a href="home.php">Home</a>
+    </div>
+
+    <div class="navButtonR">
+      <a href="logout.php">Logout</a>
+    </div>
+    <div class="navButtonR">
+      <a href="#">test2</a>
+    </div>  </div>
+  <div class="main">
+    <div class="loginWrap" style="color: #ff0000;">
+      <b>
+        <?php echo $inviteErr; ?>
+    </b>
+    </div>
+  </div>
+</body>
+</html>
