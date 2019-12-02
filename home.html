@@ -360,7 +360,7 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                   //gives the frame a chance to load before automatically clicking to the team page
                   window.onload=function(){
                     document.getElementById("standings").click();
-                    openPage('team', this, 'grey');
+                    setTimeout(openPage('Team', this, 'grey'), 3000);
                   };
                 </script>
             </div>
