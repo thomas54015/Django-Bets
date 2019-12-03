@@ -1,88 +1,88 @@
 <?php
-session_start();
-
 include "functions.php";
 
-// Variable to store the username
-$user = "";
-// variable for password
-$pass = "";
 
-$linkPass="";
-$linkPass = $_REQUEST['linkPass'];
-$leagueN = $_REQUEST['leagueN'];
-$invite = $_REQUEST['invite'];
-
-//echo "The link pass: " . $linkPass . " leagueN: " . $leagueN . " invite: " . $invite;
-if (!empty($_POST['login']))
+if (!empty($_POST['resetPass']))
 {
-  $mayPass = 0;
-  $loginError = "";
-  $user = $_POST['username'];
-  $pass = $_POST['password'];
+  $maySign = 0;
+  $emailError = "";
+  $email = $_POST['email'];
+
   // I knew this function existed, but refrenced from :https://www.w3schools.com/php/func_string_strtolower.asp#targetText=strtoupper()%20%2D%20converts%20a%20string,in%20a%20string%20to%20uppercase
   // The reason I did this, is so that people cant have the same username with different caps.
-  $user = strtolower($user);
-  // refrenced: https://www.w3schools.com/php/php_mysql_select.asp
   $conn = new mysqli($servername, $username, $password, $dbname);
+
+
   // Check connection
   if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
       //error message if database connection fails.
     }
 
-  $sql = "SELECT * FROM users WHERE username = '$user'";
+  $sql = "SELECT * FROM users WHERE email = '$email'";
   /*This is the first mySQL. This selects data from the
   table users where the username colum is equal to the username input */
 
   $result = $conn->query($sql);
 
+  // this looks to see if there are any resultsf from the sql.
   if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-      $realPass = $row['password'];
-      $salt = $row['salt'];
-
-
-      // I explained most of how this works on the signup, I think the important
-      // part here is to know that we arn't really comparing passwords. We are
-      // comparing the hashed version of passwords. The inputed password is
-      // hashed to be compared to the hashed password in the database.
-      $pepper = $user . "rR@gt5!ic6";
-
-      // adding the pepper to the end of the password.
-      $hashpass = $pass . $pepper;
-      $hashpass = crypt($hashpass, sprintf('$2y$%02d$', 9) . $salt);
-      //echo $hashpass . " " . $salt;
-
-      if ($hashpass == $realPass)
-      {
-        $mayPass = 1;
-      }
-    }
+    $maySign = 1;
   }
-  if ($mayPass == 1) {
+  else{
+    $emailError = "Sorry, email not registered!";
+  }
+
+  if ($maySign == 1) {
     // refrenced: https://www.pontikis.net/tip/?id=18 for date('Y-m-d H:i:s')
     $currentDT = date('Y-m-d H:i:s');
-    // refrenced: https://www.w3schools.com/php/php_mysql_update.asp
-    $sql = "UPDATE users SET lastlog='$currentDT' WHERE username='$user'";
 
+  $resetLink = "";
+  // This is creating the salt, pretty much a range of letters and numbers 22 chars long.
+  $resetOptions = array_merge(range('A','Z'), range('a', 'z'), range(0,9));
+  for($i = 0; $i < 22; $i++)
+  {
+      $resetLink .= $resetOptions[array_rand($resetOptions)];
+  }
+  $sql = "UPDATE passreset SET valid=0 WHERE email='$email'";
+
+  $conn->query($sql);
+
+    $sql = "INSERT INTO passreset (email, resetlink, date, valid) VALUES ('$email','$resetLink','$currentDT', 1)";
     if ($conn->query($sql) === TRUE) {
-      $_SESSION['userSess'] = $user;
+// Note: the email below requires computers to have an email service of somesort.
+// it will work online, but not locally.
+$email_subject = "Djangofantasy Password Reset";
+$email_message = "Hello! \r\n \r\n
+We have recieved a request to reset your Djangosfantasy password!\r\n
+If you did not request a reset, then ignore this email and your password will remain the same.\r\n
+Please Click the link below to reset your password!\r\n
 
-      if ($linkPass == "invite")
-      {
-        Redirect("invite.php?leagueN=" . $leagueN . "&invite=" . $invite);
-      }
-      else {
-        Redirect("home.php");
-      }
+<a href='www.djangosfantasy.com/passreset.php?email=" . $email . "&resetlink=" . $resetLink . "'>Reset Password</a>\r\n
+
+If the link does not work, you can also copy the following link to put in your browsers URL.\r\n \r\n
+
+www.djangosfantasy/passreset.php?email=" . $email . "&resetlink=" . $resetLink . "\r\n \r\n
+
+Have a good day!\n
+~Djangosfantasy Developement Team";
+
+$email_message = wordwrap($email_message, 70, "\r\n");
+
+$headers = 'Content-type: text/html; charset=utf-8' . "\r\n" .
+
+'From: contact@djangosfantasy.com\r\n'.
+
+'Reply-To: contact@djangosfantasy.com\r\n' .
+
+'X-Mailer: PHP/' . phpversion();
+
+@mail($email, $email_subject, $email_message, $headers);
+
+
+      Redirect("passreset.php");
     }
   }
-  else {
-    $loginError = "Invalid username or Password";
-  }
-  // I forgot to origninally close the database
   $conn->close();
 }
 if (!empty($_SESSION['userSess']))
@@ -135,37 +135,24 @@ if (!empty($_SESSION['userSess']))
     <div class="loginWrap">
       <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" method="post">
       <div class="cTitle">
-      Login to Django
+      Forgot Password
     </div>
     <div class="inputWrap">
       <div class="inputLeft">
-        Username:
+        Email:
       </div>
       <div class="inputRight">
-        <input type="text" name = "username" value="<?php echo $user; ?>"/>
-      </div>
-    </div>
-    <div class="inputWrap">
-      <div class="inputLeft">
-        Password:
-      </div>
-      <div class="inputRight">
-        <input name="password" type="password" />
+        <input type="text" name = "email" value="<?php echo $email; ?>"/>
       </div>
     </div>
     <div class="inputWrap">
       <div class="inputCenter">
-        <a href = "forgotpass.php">Forgot Password</a>
-      </div>
-    </div>
-    <div class="inputWrap">
-      <div class="inputCenter">
-        <input class="formButton" type="submit" value="Login" name="login" />
+        <input class="formButton" type="submit" value="Reset" name="resetPass" />
       </div>
     </div>
     <div class="inputWrap">
       <div class="inputCenterError">
-        <?php echo $loginError; ?>
+        <?php echo $emailError; ?>
       </div>
     </div>
   </form>

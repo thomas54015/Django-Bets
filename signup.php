@@ -5,12 +5,14 @@ include "functions.php";
 $user = "";
 // variable for password
 $pass = "";
+$signupError = "*Note, we do not check format or validate email. <br>If you give an incorrect email, you will not be able to reset your account.";
 
 if (!empty($_POST['signup']))
 {
   $maySign = 1;
-  $signupError = "";
   $user = $_POST['username'];
+  $email = $_POST['email'];
+
   $pass = $_POST['password'];
   $repass = $_POST['repassword'];
   // I knew this function existed, but refrenced from :https://www.w3schools.com/php/func_string_strtolower.asp#targetText=strtoupper()%20%2D%20converts%20a%20string,in%20a%20string%20to%20uppercase
@@ -48,6 +50,24 @@ if (!empty($_POST['signup']))
     $maySign = 0;
   }
 
+  // Check connection
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+      //error message if database connection fails.
+    }
+
+  $sql = "SELECT * FROM users WHERE email = '$email'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+
+  // this looks to see if there are any resultsf from the sql.
+  if ($result->num_rows > 0) {
+    $signupError = "Sorry, email is already used!";
+    $maySign = 0;
+  }
+
   if ($maySign == 1) {
     // refrenced: https://www.pontikis.net/tip/?id=18 for date('Y-m-d H:i:s')
     $currentDT = date('Y-m-d H:i:s');
@@ -73,8 +93,8 @@ if (!empty($_POST['signup']))
   $pass = crypt($pass, sprintf('$2y$%02d$', 9) . $salt);
 
     // refrenced: https://www.w3schools.com/php/php_mysql_insert.asp
-    $sql = "INSERT INTO users (username, password, salt, type, signupdate, lastlog)
-    VALUES ('$user', '$pass', '$salt', 1, '$currentDT', '$currentDT')";
+    $sql = "INSERT INTO users (username, password, salt, email, type, signupdate, lastlog)
+    VALUES ('$user', '$pass', '$salt', '$email', 1, '$currentDT', '$currentDT')";
 
     if ($conn->query($sql) === TRUE) {
       $_SESSION['userSess'] = $user;
@@ -156,6 +176,14 @@ if (!empty($_SESSION['userSess']))
       </div>
       <div class="inputRight">
         <input name="repassword" type="password" />
+      </div>
+    </div>
+    <div class="inputWrap">
+      <div class="inputLeft">
+        Email:
+      </div>
+      <div class="inputRight">
+        <input name="email" type="text" value="<?php echo $email; ?>" />
       </div>
     </div>
     <div class="inputWrap">

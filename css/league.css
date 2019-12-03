@@ -86,14 +86,40 @@
   border: 2px solid black;
   background-color: Transparent;
   color: white;
-  padding: 5px 5px;
+  padding: 15px 0px 0px 0px;
+  margin: 0px;
   font-size: 16px;
   cursor: pointer;
   text-align: center;
   transition: .9s;
 }
 
+.buttonTwo {
+  display: inline-block;
+  width: 100%;
+  border: 2px solid black;
+  background-color: #f10f0f85;
+  color: white;
+  padding: 15px 0px 0px 0px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  transition: .9s;
+}
 
+.errrs {
+  color: #ff0000;
+  margin: auto;
+  width: 1200px;
+  text-align: center;
+}
+
+.dM {
+  color: #00ff00;
+  margin: auto;
+  width: 1200px;
+  text-align: center;
+}
 
 .players {
   display: inline;

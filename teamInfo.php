@@ -17,9 +17,9 @@ include "functions.php";
             <img class="page-logo" src="./pics/logo.png" alt="logo">
           </div>
           <div class="navWrap">
-        
+
             <div class="navButtonL">
-              <a href="home.html">Home</a>
+              <a href="home.php">Home</a>
             </div>
             <div class="navButtonL">
               <a href="teamInfo.html">Teams</a>
@@ -36,87 +36,87 @@ include "functions.php";
             <div>
                 <div class="selection-panel">
                     <button class="tablink" style="background:#212121;" onclick="openPage('blank', this, 'grey')" id="defaultOpen"></button>
-                    
+
                     <div class="grid">
                         <button class="tablink" onclick="openPage('Arsenal', this, 'grey')">
                             <img src="pics/teamIcons/arsenal.png" alt="Arsenal" class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('Aston', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('Aston', this, 'grey')">
                             <img src="pics/teamIcons/astonvila.png" alt="Aston Villa F.C." class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('AFC', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('AFC', this, 'grey')">
                             <img src="pics/teamIcons/afcbourne.png" alt="A.F.C. Bournemouth" class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('Brighton', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('Brighton', this, 'grey')">
                             <img src="pics/teamIcons/brighton.png" alt="Brighton & Hove Albion" class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('Burnley', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('Burnley', this, 'grey')">
                             <img src="pics/teamIcons/burnley.jpg" alt="Burnley F.C." class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('Chelsea', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('Chelsea', this, 'grey')">
                             <img src="pics/teamIcons/chelsea.jpg" alt="Chelsea F.C." class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('Crystal', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('Crystal', this, 'grey')">
                             <img src="pics/teamIcons/crystal.png" alt="Crystal Palace F.C." class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('Everton', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('Everton', this, 'grey')">
                             <img src="pics/teamIcons/everton.png" alt="Everton F.C." class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('Leicester', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('Leicester', this, 'grey')">
                             <img src="pics/teamIcons/leicester.png" alt="Leicester F.C." class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('Liverpool', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('Liverpool', this, 'grey')">
                             <img src="pics/teamIcons/liverpool.jpg" alt="Liverpool F.C." class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('ManCity', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('ManCity', this, 'grey')">
                             <img src="pics/teamIcons/manCity.png" alt="Manchester City F.C." class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('ManU', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('ManU', this, 'grey')">
                             <img src="pics/teamIcons/manU.png" alt="Manchester United F.C." class="thumbnail">
                         </button>
-                  
-                        <button class="tablink" onclick="openPage('Newcastle', this, 'grey')"> 
+
+                        <button class="tablink" onclick="openPage('Newcastle', this, 'grey')">
                             <img src="pics/teamIcons/newcastle.jpg" alt="Newcastle United F.C." class="thumbnail">
                         </button>
 
-                        <button class="tablink" onclick="openPage('Norwich', this, 'grey')"> 
+                        <button class="tablink" onclick="openPage('Norwich', this, 'grey')">
                             <img src="pics/teamIcons/norwich.png" alt="Norwich F.C." class="thumbnail">
                         </button>
 
-                        <button class="tablink" onclick="openPage('Sheffiled', this, 'grey')"> 
+                        <button class="tablink" onclick="openPage('Sheffiled', this, 'grey')">
                             <img src="pics/teamIcons/sheffield.png" alt="Sheffiled United F.C." class="thumbnail">
                         </button>
 
-                        <button class="tablink" onclick="openPage('Southampton', this, 'grey')"> 
+                        <button class="tablink" onclick="openPage('Southampton', this, 'grey')">
                             <img src="pics/teamIcons/southampton.png" alt="Southampton F.C." class="thumbnail">
                         </button>
 
-                        <button class="tablink" onclick="openPage('Tottenham', this, 'grey')"> 
+                        <button class="tablink" onclick="openPage('Tottenham', this, 'grey')">
                             <img src="pics/teamIcons/tottenham.png" alt="Tottenham Hotspurs F.C." class="thumbnail">
                         </button>
 
-                        <button class="tablink" onclick="openPage('Watford', this, 'grey')"> 
+                        <button class="tablink" onclick="openPage('Watford', this, 'grey')">
                             <img src="pics/teamIcons/watford.png" alt="Watford F.C." class="thumbnail">
                         </button>
 
-                        <button class="tablink" onclick="openPage('WestHam', this, 'grey')"> 
+                        <button class="tablink" onclick="openPage('WestHam', this, 'grey')">
                             <img src="pics/teamIcons/westHam.png" alt="West Ham United F.C." class="thumbnail">
                         </button>
 
-                        <button class="tablink" onclick="openPage('Wolverhampton', this, 'grey')"> 
+                        <button class="tablink" onclick="openPage('Wolverhampton', this, 'grey')">
                             <img src="pics/teamIcons/wolver.png" alt="Wolverhampton Wanderers F.C." class="thumbnail">
-                        </button>          
+                        </button>
                     </div>
                 </div>
             </div>
@@ -151,7 +151,7 @@ include "functions.php";
 
             <div class="infoWrapper">
                 <div id="Arsenal" style="padding:100px 40px;" class="tabcontent">
-                            
+
                     <iframe src="https://footystats.org/api/club?id=59" height="100%" width="100%" style="height:420px; width:100%;" frameborder="0"></iframe>
                     <?php
                         $sql = "SELECT * FROM teams WHERE team = 'Arsenal'";
@@ -159,9 +159,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -183,9 +183,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -207,9 +207,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -231,9 +231,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -255,9 +255,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -279,9 +279,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -303,9 +303,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -327,9 +327,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -351,9 +351,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -375,9 +375,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -399,9 +399,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -423,9 +423,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -447,9 +447,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -471,9 +471,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -495,9 +495,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -510,7 +510,7 @@ include "functions.php";
                         }
                     ?>
                 </div>
-                
+
                 <div id="Southampton" style="padding:100px 40px;" class="tabcontent">
                     <iframe src="https://footystats.org/api/club?id=146" height="100%" width="100%" style="height:420px; width:100%;" frameborder="0"></iframe>
                         <?php
@@ -519,9 +519,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -535,7 +535,7 @@ include "functions.php";
                     ?>
                 </div>
 
-                <div id="Tottenham" style="padding:100px 40px;" class="tabcontent"> 
+                <div id="Tottenham" style="padding:100px 40px;" class="tabcontent">
                     <iframe src="https://footystats.org/api/club?id=92" height="100%" width="100%" style="height:420px; width:100%;" frameborder="0"></iframe>
                         <?php
                         $sql = "SELECT * FROM teams WHERE team = 'Tottenham'";
@@ -543,9 +543,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -559,7 +559,7 @@ include "functions.php";
                     ?>
                 </div>
 
-                <div id="Watford" style="padding:100px 40px;" class="tabcontent"> 
+                <div id="Watford" style="padding:100px 40px;" class="tabcontent">
                     <iframe src="https://footystats.org/api/club?id=155" height="100%" width="100%" style="height:420px; width:100%;" frameborder="0"></iframe>
                         <?php
                         $sql = "SELECT * FROM teams WHERE team = 'Watford'";
@@ -567,9 +567,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -591,9 +591,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {
@@ -606,7 +606,7 @@ include "functions.php";
                         }
                     ?>
                 </div>
-                
+
                 <div id="Wolverhampton" style="padding:100px 40px;" class="tabcontent">
                     <iframe src="https://footystats.org/api/club?id=223" height="100%" width="100%" style="height:420px; width:100%;" frameborder="0"></iframe>
                         <?php
@@ -615,9 +615,9 @@ include "functions.php";
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo $row['team'] . " has a total of " . $row['points'] . " points<br>";
-                                
+
                                 echo $row['team'] . " has scored " . $row['scores'] . ' goals and given up ' . $row['conceded'] . " goals<br>";
-                                
+
                                 $w = $row['wins']/($row['wins']+$row['losses']+$row['draws'])*100;
                                 echo $row['team'] . "'s wins percentage is currently " . round($w,2) . "%<br>";
                                 if ($w < 50) {

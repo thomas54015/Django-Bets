@@ -83,6 +83,7 @@ if ($result->num_rows > 0) {
 if ($leagueAccess == 1)
 {
   echo $leagueP . '<br>';
+  echo '<a href="draft.php?leagueP=' . $leagueP . '">Draft!</a><br>';
   echo "Points: 0<br><br>";
 
   echo "League Captin: " . $leagueCaptin . "<br>";
@@ -108,13 +109,41 @@ if ($leagueAccess == 1)
 
     }
   }
-  echo "<br>3 Winning Teams: <br>
-  1. Team 1<br>
-  2. Team 2<br>
-  3. Team 3<br>
+
+  echo "<br>Winning Teams Picked: <br>";
+  $sql = "SELECT * FROM draft WHERE league = '$leagueP' AND username = '$uname' AND winlose = '1'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 1;
+  if ($result->num_rows > 0) {
+    // output data of each row
+    $winTeams = 1;
+    while($row = $result->fetch_assoc()) {
+      echo $winTeams . '. ' . $row['team'] . '<br>';
+      $winTeams++;
+    }
+  }
+  echo "
   <br>
-  Losing Team:<br>
-  1. Team 1<br>
+  Losing Team Picked:<br>";
+  $sql = "SELECT * FROM draft WHERE league = '$leagueP' AND username = '$uname' AND winlose = '0'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 1;
+  if ($result->num_rows > 0) {
+    // output data of each row
+    $loseTeams = 1;
+    while($row = $result->fetch_assoc()) {
+      echo $loseTeams . '. ' . $row['team'] . '<br>';
+      $loseTeams++;
+    }
+  }
+  echo "
+
   <br>
   ";
 }
@@ -122,6 +151,8 @@ else if ($leagueAccess == 2)
 {
   // This is for the league captian.
   echo $leagueP . '<br>';
+  echo '<a href="draft.php?leagueP=' . $leagueP . '">Draft!</a><br>';
+
   echo "Points: 0<br><br>";
 
   echo "League Captin: " . $leagueCaptin . "<br>";
@@ -163,13 +194,40 @@ else if ($leagueAccess == 2)
 
     }
   }
-  echo "<br>3 Winning Teams: <br>
-  1. Team 1<br>
-  2. Team 2<br>
-  3. Team 3<br>
+  echo "<br>Winning Teams Picked: <br>";
+  $sql = "SELECT * FROM draft WHERE league = '$leagueP' AND username = '$uname' AND winlose = '1'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 1;
+  if ($result->num_rows > 0) {
+    // output data of each row
+    $winTeams = 1;
+    while($row = $result->fetch_assoc()) {
+      echo $winTeams . '. ' . $row['team'] . '<br>';
+      $winTeams++;
+    }
+  }
+  echo "
   <br>
-  Losing Team:<br>
-  1. Team 1<br>
+  Losing Team Picked:<br>";
+  $sql = "SELECT * FROM draft WHERE league = '$leagueP' AND username = '$uname' AND winlose = '0'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 1;
+  if ($result->num_rows > 0) {
+    // output data of each row
+    $loseTeams = 1;
+    while($row = $result->fetch_assoc()) {
+      echo $loseTeams . '. ' . $row['team'] . '<br>';
+      $loseTeams++;
+    }
+  }
+  echo "
+
   <br>
   ";
 }
@@ -316,11 +374,11 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                 </a>
                 <div>
                     <?php
-                    function updatebutton() { 
+                    function updatebutton() {
                         $command = escapeshellcmd('./api/mypython/python ./api/apitest.py');
                         $output = shell_exec($command);
                         echo $output . "<br>Tables Successfully Updated<br>";
-                        
+
                     }
                     echo $_SESSION['userSess'];
                     if ($_SESSION['userSess'] == "daniluk") {
@@ -328,18 +386,18 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                       if (array_key_exists('updatebutton', $_POST)) {
                         updatebutton();
                       }
-                      
+
                       echo "DEV: this will run python script 100/day";
-                      echo '<form method="post"> 
+                      echo '<form method="post">
                       <input type="submit" name="updatebutton"
                         class="button" value="Update Teams" /> ';
                     }
-                    
+
                     ?>
                 <br>
-                      
-                    
-                     
+
+
+
                 </div>
                 <br><br>
                 <ul class="leagueList">
