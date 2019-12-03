@@ -132,6 +132,28 @@ body {
     width: 299px;
     float: left;
     position: relative;
+    overflow: auto;
+}
+
+.tradeBox {
+  margin-left: auto;
+  margin-right: auto;
+  height: 150px;
+  width: 290px;
+}
+
+.tradeButton {
+  width: 98%;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 .profile {
