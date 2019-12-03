@@ -132,7 +132,16 @@ body {
     width: 299px;
     float: left;
     position: relative;
-    overflow: scroll;
+}
+
+.inner-panel-right {
+  height: 475px;
+  width: 299px;
+  float: left;
+  position: relative;
+  overflow: auto;
+  padding-bottom: 145px;
+
 }
 
 .tradeBox {
@@ -149,6 +158,20 @@ body {
   border: none;
   color: white;
   padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.requestButton {
+  height: 40px;
+  width: 98%;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
