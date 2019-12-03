@@ -83,6 +83,7 @@ if ($result->num_rows > 0) {
 if ($leagueAccess == 1)
 {
   echo $leagueP . '<br>';
+  echo '<a href="draft.php?leagueP=' . $leagueP . '">Draft!</a><br>';
   echo "Points: 0<br><br>";
 
   echo "League Captin: " . $leagueCaptin . "<br>";
@@ -108,13 +109,41 @@ if ($leagueAccess == 1)
 
     }
   }
-  echo "<br>3 Winning Teams: <br>
-  1. Team 1<br>
-  2. Team 2<br>
-  3. Team 3<br>
+
+  echo "<br>Winning Teams Picked: <br>";
+  $sql = "SELECT * FROM draft WHERE league = '$leagueP' AND username = '$uname' AND winlose = '1'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 1;
+  if ($result->num_rows > 0) {
+    // output data of each row
+    $winTeams = 1;
+    while($row = $result->fetch_assoc()) {
+      echo $winTeams . '. ' . $row['team'] . '<br>';
+      $winTeams++;
+    }
+  }
+  echo "
   <br>
-  Losing Team:<br>
-  1. Team 1<br>
+  Losing Team Picked:<br>";
+  $sql = "SELECT * FROM draft WHERE league = '$leagueP' AND username = '$uname' AND winlose = '0'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 1;
+  if ($result->num_rows > 0) {
+    // output data of each row
+    $loseTeams = 1;
+    while($row = $result->fetch_assoc()) {
+      echo $loseTeams . '. ' . $row['team'] . '<br>';
+      $loseTeams++;
+    }
+  }
+  echo "
+
   <br>
   ";
 }
@@ -122,6 +151,8 @@ else if ($leagueAccess == 2)
 {
   // This is for the league captian.
   echo $leagueP . '<br>';
+  echo '<a href="draft.php?leagueP=' . $leagueP . '">Draft!</a><br>';
+
   echo "Points: 0<br><br>";
 
   echo "League Captin: " . $leagueCaptin . "<br>";
@@ -163,13 +194,40 @@ else if ($leagueAccess == 2)
 
     }
   }
-  echo "<br>3 Winning Teams: <br>
-  1. Team 1<br>
-  2. Team 2<br>
-  3. Team 3<br>
+  echo "<br>Winning Teams Picked: <br>";
+  $sql = "SELECT * FROM draft WHERE league = '$leagueP' AND username = '$uname' AND winlose = '1'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 1;
+  if ($result->num_rows > 0) {
+    // output data of each row
+    $winTeams = 1;
+    while($row = $result->fetch_assoc()) {
+      echo $winTeams . '. ' . $row['team'] . '<br>';
+      $winTeams++;
+    }
+  }
+  echo "
   <br>
-  Losing Team:<br>
-  1. Team 1<br>
+  Losing Team Picked:<br>";
+  $sql = "SELECT * FROM draft WHERE league = '$leagueP' AND username = '$uname' AND winlose = '0'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  $nameCount = 1;
+  if ($result->num_rows > 0) {
+    // output data of each row
+    $loseTeams = 1;
+    while($row = $result->fetch_assoc()) {
+      echo $loseTeams . '. ' . $row['team'] . '<br>';
+      $loseTeams++;
+    }
+  }
+  echo "
+
   <br>
   ";
 }
@@ -291,11 +349,13 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
           <div class="navWrap">
 
             <?php
-            echo '
+            echo  '
             <div class="navButtonL">
               <a href="home.php">Home</a>
             </div>
-
+            <div class="navButtonL">
+              <a href="teamInfo.html">Info</a>
+            </div>
             <div class="navButtonR">
               <a href="logout.php">Logout</a>
             </div>
@@ -309,13 +369,35 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
 
         <div class="wrapper">
             <div class="panel-left">
-                <a href="profile.html" class="profile">
+                <a href="profile.php" class="profile">
                     <img class="profile-picture" alt="profile picture" src="pics/defaultprofile.png">
                 </a>
                 <div>
                     <?php
+                    function updatebutton() {
+                        $command = escapeshellcmd('./api/mypython/python ./api/apitest.py');
+                        $output = shell_exec($command);
+                        echo $output . "<br>Tables Successfully Updated<br>";
+
+                    }
                     echo $_SESSION['userSess'];
-                     ?>
+                    if ($_SESSION['userSess'] == "daniluk") {
+                      echo "<br><br>";
+                      if (array_key_exists('updatebutton', $_POST)) {
+                        updatebutton();
+                      }
+
+                      echo "DEV: this will run python script 100/day";
+                      echo '<form method="post">
+                      <input type="submit" name="updatebutton"
+                        class="button" value="Update Teams" /> ';
+                    }
+
+                    ?>
+                <br>
+
+
+
                 </div>
                 <br><br>
                 <ul class="leagueList">
@@ -342,8 +424,8 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
               </div>
             <div class="panel-center">
                 <div style="justify-content: center;">
-                  <button class="tablink" onclick="openPage('Team', this, 'grey')">My Team</button>
-                  <button class="tablink" onclick="openPage('Standings', this, 'grey')" id="defaultOpen">Standings</button>
+                  <button class="tablink" onclick="openPage('Team', this, 'grey')" id="team">My Team</button>
+                  <button class="tablink" onclick="openPage('Standings', this, 'grey')" id="standings">Standings</button>
                 </div>
 
                 <div id="Team" class="tabcontent">
@@ -369,8 +451,11 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                     document.getElementById(pageName).style.display = "block";
                   }
 
-                  // Get the element with id="defaultOpen" and click on it
-                  document.getElementById("defaultOpen").click();
+                  //gives the frame a chance to load before automatically clicking to the team page
+                  window.onload=function(){
+                    document.getElementById("standings").click();
+                    setTimeout(openPage('Team', this, 'grey'), 3000);
+                  };
                 </script>
             </div>
             <div class="panel-right">
