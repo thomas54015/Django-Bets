@@ -272,7 +272,7 @@ else {
 
     <div class="nav">
       <a class="navButtonL" href="home.php">Home</a>
-      <a class="navButtonL" href="league.html">League</a>
+      <a class="navButtonL" href="teamInfo.php">Info</a>
       <a class="navButtonR" href="logout.php">Log Out</a>
     </div>
     <?php
