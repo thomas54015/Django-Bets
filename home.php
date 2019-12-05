@@ -239,7 +239,60 @@ else
 
 
 }
+function updatebutton($servername, $username, $password, $dbname) {
+	
+	$curl = curl_init();
 
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => "https://sportsop-soccer-sports-open-data-v1.p.rapidapi.com/v1/leagues/premier-league/seasons/19-20/standings",
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_ENCODING => "",
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "GET",
+		CURLOPT_HTTPHEADER => array(
+			"x-rapidapi-host: sportsop-soccer-sports-open-data-v1.p.rapidapi.com",
+			"x-rapidapi-key: 4777a60297msh383d23636d01510p16375ejsn40230e12fcd8"
+		),
+	));
+
+	$response = curl_exec($curl);
+	$err = curl_error($curl);
+
+	curl_close($curl);
+
+	if ($err) {
+		echo "cURL Error #:" . $err;
+	} else {
+		$new = explode('team":',$response);
+		for ($i = 1; $i < sizeof($new); $i++) {
+			$team = explode('"',$new[$i])[1];
+			$wins = preg_replace('/[^0-9]/','',explode('"',$new[$i])[6]);
+			$draws = preg_replace('/[^0-9]/','',explode('"',$new[$i])[8]);
+			$losses = preg_replace('/[^0-9]/','',explode('"',$new[$i])[10]);
+			$points = preg_replace('/[^0-9]/','',explode('"',$new[$i])[12]);
+			$scores = preg_replace('/[^0-9]/','',explode('"',$new[$i])[14]);
+			$conceded = preg_replace('/[^0-9]/','',explode('"',$new[$i])[16]);
+			$matches_played = preg_replace('/[^0-9]/','',explode('"',$new[$i])[22]);
+			
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			if ($conn->connect_error) {
+				die("Connection failed: " . $conn->connect_error);
+			}
+			$sql = ("UPDATE teams SET wins=$wins, losses=$losses, draws=$draws, points=$points, scores=$scores, conceded=$conceded, played=$matches_played WHERE team='$team'");
+			if($conn->query($sql) === FALSE) {
+				echo "SQL FAIL\n";
+			}
+			#echo "$result\n";
+			if (!$conn->commit()) {
+				echo "Transaction commit failed\n";
+			}
+		}
+		echo 'Update Complete<br>';
+	}
+}
 
 if (!empty($_POST['newLeagueB']))
 {
@@ -374,20 +427,13 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                 </a>
                 <div>
                     <?php
-                    function updatebutton() {
-                        $command = escapeshellcmd('./api/mypython/python ./api/apitest.py');
-                        $output = shell_exec($command);
-                        echo $output . "<br>Tables Successfully Updated<br>";
-
-                    }
+                    
                     echo $_SESSION['userSess'];
                     if ($_SESSION['userSess'] == "daniluk") {
                       echo "<br><br>";
                       if (array_key_exists('updatebutton', $_POST)) {
-                        updatebutton();
+                        updatebutton($servername, $username, $password, $dbname);
                       }
-
-                      echo "DEV: this will run python script 100/day";
                       echo '<form method="post">
                       <input type="submit" name="updatebutton"
                         class="button" value="Update Teams" /> ';
