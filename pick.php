@@ -149,7 +149,7 @@ if ($result->num_rows > 0) {
 
 if ($dataAccessT == 1)
 {
-  $sql = "SELECT * FROM teams";
+  $sql = "SELECT * FROM teamsAlt";
   /*This is the first mySQL. This selects data from the
   table users where the username colum is equal to the username input */
 
