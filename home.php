@@ -670,8 +670,7 @@ if ($leagueAccess == 1)
             }
           }
           echo '
-          <a href="accept.php?id=' .  . '" class="tradeButton">ACCEPT!</a>
-          <button type="button" class="tradeButton" name="tradeButton">ACCEPT!</button>
+          <a href="accept.php?id=' . $row['id'] . '" class="tradeButton">ACCEPT!</a>
 
           </div>';
         }
