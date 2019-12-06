@@ -782,7 +782,7 @@ else
               <a href="home.php">Home</a>
             </div>
             <div class="navButtonL">
-              <a href="teamInfo.html">Info</a>
+              <a href="teamInfo.php">Info</a>
             </div>
             <div class="navButtonR">
               <a href="logout.php">Logout</a>
@@ -838,6 +838,7 @@ else
                     </div>
                     <input type="text" class="newLeagueT" name="newLeagueT" />
                     <input type="submit" class="newLeagueB" name="newLeagueB" value="➕ Create League" />
+                    <div>Be sure you enter a unique league name!</div>
                   </form>
                   <div class="newLeagueErr">
                     <?php
