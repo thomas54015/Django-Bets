@@ -281,7 +281,7 @@ else
 
 }
 function updatebutton($servername, $username, $password, $dbname) {
-	
+
 	$curl = curl_init();
 
 		curl_setopt_array($curl, array(
@@ -317,7 +317,7 @@ function updatebutton($servername, $username, $password, $dbname) {
 			$scores = preg_replace('/[^0-9]/','',explode('"',$new[$i])[14]);
 			$conceded = preg_replace('/[^0-9]/','',explode('"',$new[$i])[16]);
 			$matches_played = preg_replace('/[^0-9]/','',explode('"',$new[$i])[22]);
-			
+
 			$conn = new mysqli($servername, $username, $password, $dbname);
 			if ($conn->connect_error) {
 				die("Connection failed: " . $conn->connect_error);
@@ -384,7 +384,7 @@ function pointsbutton($servername, $username, $password, $dbname) {
             $win2 = '';
             $win3 = $row['team'];
             $points = 0;
-            $sql = ("SELECT * from draft where username='$usernametemp' and league='$leaguetemp'"); 
+            $sql = ("SELECT * from draft where username='$usernametemp' and league='$leaguetemp'");
             $resultx = $conn->query($sql);
             if ($resultx->num_rows > 0) {
               $j = 0;
@@ -413,7 +413,7 @@ function pointsbutton($servername, $username, $password, $dbname) {
                 }
                 elseif ($j == 2) {
                   $win2 = $rowx['team'];
-                  $sql = ("SELECT * from teams where team='$win2'"); 
+                  $sql = ("SELECT * from teams where team='$win2'");
                   $result3 = $conn->query($sql);
                   if ($result3->num_rows > 0) {
                     while($rowy = $result3->fetch_assoc()) {
@@ -527,7 +527,7 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
       //error message if database connection fails.
     }
 
-    
+
 
     $sql = "SELECT * FROM leagues WHERE username = '$uname' AND valid='1'";
     $result = $conn->query($sql);
@@ -548,6 +548,215 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
       }
     }
 }
+
+
+if (!empty($_POST['requestButton'])) {
+
+  $canOff = 1;
+  $myteam = $_POST['MyTeams'];
+  $yourteam = $_POST['wantedTeams'];
+
+  $offerUser = "";
+
+
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  // Check connection
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+      //error message if database connection fails.
+    }
+  $sql = "SELECT * FROM draft WHERE team = '$yourteam' AND league= '$leagueP'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  // this looks to see if there are any resultsf from the sql.
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $offerUser = $row['username'];
+    }
+  }
+
+  $sql = "SELECT * FROM trades WHERE username = '$uname' AND myteam = '$myteam' AND league= '$leagueP' AND yourteam = '$yourteam'";
+  /*This is the first mySQL. This selects data from the
+  table users where the username colum is equal to the username input */
+
+  $result = $conn->query($sql);
+  // this looks to see if there are any resultsf from the sql.
+  if ($result->num_rows > 0) {
+    $canOff = 0;
+  }
+
+  if ($canOff == 1)
+  {
+
+    $sql = "INSERT INTO trades (username, offerUser, league, myteam, yourteam, accept)
+    VALUES ('$uname', '$offerUser', '$leagueP', '$myteam', '$yourteam', 0)";
+
+    // username	league	myteam	yourteam	accept
+
+    $conn->query($sql);
+  }
+}
+
+function tradingSystem($servername, $username, $password, $dbname, $uname, $leagueP)
+{
+
+
+
+$leagueAccess = 0;
+$leagueCaptin = "";
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    //error message if database connection fails.
+  }
+
+$sql = "SELECT * FROM leagues WHERE username = '$uname' AND league = '$leagueP' AND valid = '1'";
+/*This is the first mySQL. This selects data from the
+table users where the username colum is equal to the username input */
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  $leagueAccess = 1;
+
+}
+
+
+if ($leagueAccess == 1)
+{
+  echo '
+  <h2 style="text-align: center;">Trades</h2>
+
+  <div class="inner-panel-right">';
+
+  $sql = "SELECT * FROM trades WHERE offerUser = '$uname' AND league = '$leagueP' AND accept = 0";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+
+      $theirTeam = $row['myteam'];
+      $myteam = $row['yourteam'];
+
+      $sql2 = "SELECT * FROM draft WHERE league = '$leagueP' AND team = '$myteam'";
+      $result2 = $conn->query($sql2);
+
+      if ($result2->num_rows > 0) {
+
+        // output data of each row
+        while($row2 = $result2->fetch_assoc()) {
+          echo'<div class="tradeBox">';
+
+
+          $sql3 = "SELECT * FROM teamsAlt";
+          $result3 = $conn->query($sql3);
+
+          if ($result3->num_rows > 0) {
+            // output data of each row
+
+            while($row3 = $result3->fetch_assoc()) {
+              if ($row3['teamName'] == $myteam || $row3['teamName'] == $theirTeam)
+              {
+                echo '
+                  <img src="pics/teamIcons/' . $row3['picLink'] . '" style="width:49%;" alt="' . $row3['teamName'] . '">
+                  ';
+                }
+            }
+          }
+          echo '
+          <a href="accept.php?id=' .  . '" class="tradeButton">ACCEPT!</a>
+          <button type="button" class="tradeButton" name="tradeButton">ACCEPT!</button>
+
+          </div>';
+        }
+      }
+    }
+  }
+
+
+  /*
+  echo '
+
+    <div class="tradeBox">
+      <img src="pics/teamIcons/arsenal.png" style="width:49%;" alt="Arsenal">
+      <img src="pics/teamIcons/chelsea.jpg" style="width:49%;" alt="Chelsea F.C.">
+      <button type="button" class="tradeButton" name="tradeButton">ACCEPT!</button>
+    </div>
+
+    <div class="tradeBox">
+      <img src="pics/teamIcons/wolver.png" style="width:49%;" alt="Wolverhampton Wanderers F.C.">
+      <img src="pics/teamIcons/southampton.png"  style="width:49%;" alt="Liverpool F.C.">
+      <button type="button" class="tradeButton" name="tradeButton">ACCEPT!</button>
+    </div>
+
+    <div class="tradeBox">
+      <img src="pics/teamIcons/liverpool.jpg" style="width:49%;" alt="Liverpool F.C.">
+      <img src="pics/teamIcons/manCity.png" style="width:49%;" alt="Manchester City F.C.">
+      <button type="button" class="tradeButton" name="tradeButton">ACCEPT!</button>
+    </div>
+
+    <div class="tradeBox">
+      <img src="pics/teamIcons/everton.png" style="width:49%;" alt="Everton F.C.">
+      <img src="pics/teamIcons/manCity.png" style="width:49%;" alt="Manchester City F.C.">
+      <button type="button" class="tradeButton" name="tradeButton">ACCEPT!</button>
+    </div>';*/
+
+  echo '
+
+  </div>
+
+  <div class="swap" style="padding-top=20px;">
+  <form action="' . htmlspecialchars($_SERVER[" PHP_SELF "]) . '" method="post">
+  ';
+
+  echo '
+  <select class="myTeams" style="width: 120px; margin-left: 0px;" name="MyTeams">';
+
+  $sql = "SELECT * FROM draft WHERE username = '$uname' AND league = '$leagueP'";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      $teamN = $row['team'];
+      echo '<option value="' . $teamN . '">' . $teamN . '</option>';
+
+    }
+  }
+
+  echo '</select>
+  <select class="wantedTeams" style="width: 120px; float: right;" name="wantedTeams">';
+
+  $sql = "SELECT * FROM draft WHERE username <> '$uname' AND league = '$leagueP'";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      $teamN = $row['team'];
+      echo '<option value="' . $teamN . '">' . $teamN . '</option>';
+
+    }
+  }
+  echo '</select>
+  <input type="submit" class="requestButton" value="REQUEST" name="requestButton" />
+  </form>
+</div>';
+}
+else
+{
+  echo '<h2 style="text-align: center;">Trades</h2><br>';
+}
+
+
+}
+
  ?>
 <!doctype html>
 
@@ -593,7 +802,7 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                 </a>
                 <div>
                     <?php
-                    
+
                     echo $_SESSION['userSess'];
                     #if ($_SESSION['userSess'] == "daniluk") {
                       echo "<br><br>";
@@ -676,9 +885,9 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                 </script>
             </div>
             <div class="panel-right">
-              <div>
-                <iframe src='https://minnit.chat/Django?embed&&nickname=' style='border:none;width:90%;height:750px;margin:15px;' allowTransparency='true'></iframe>
-              </div>
+              <?php
+              tradingSystem($servername, $username, $password, $dbname, $uname, $leagueP);
+              ?>
             </div>
         </div>
     </body>
