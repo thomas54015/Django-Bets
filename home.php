@@ -629,6 +629,7 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                     </div>
                     <input type="text" class="newLeagueT" name="newLeagueT" />
                     <input type="submit" class="newLeagueB" name="newLeagueB" value="➕ Create League" />
+                    <div>Be sure you enter a unique league name!</div>
                   </form>
                   <div class="newLeagueErr">
                     <?php
@@ -676,8 +677,51 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                 </script>
             </div>
             <div class="panel-right">
-              <div>
-                <iframe src='https://minnit.chat/Django?embed&&nickname=' style='border:none;width:90%;height:750px;margin:15px;' allowTransparency='true'></iframe>
+              <h2 style='text-align: center'>Trades</h2>
+
+              <div class="inner-panel-right">
+                <div class="tradeBox">
+                  <img src="pics/teamIcons/arsenal.png" style='width:49%;' alt="Arsenal">
+                  <img src="pics/teamIcons/chelsea.jpg" style='width:49%;' alt="Chelsea F.C.">
+                  <button type="button" class='tradeButton' name="tradeButton">ACCEPT!</button>
+                </div>
+
+                <div class="tradeBox">
+                  <img src="pics/teamIcons/wolver.png" style='width:49%;' alt="Wolverhampton Wanderers F.C.">
+                  <img src="pics/teamIcons/southampton.png"  style='width:49%;'alt="Liverpool F.C.">
+                  <button type="button" class='tradeButton' name="tradeButton">ACCEPT!</button>
+                </div>
+
+                <div class="tradeBox">
+                  <img src="pics/teamIcons/liverpool.jpg" style='width:49%;' alt="Liverpool F.C.">
+                  <img src="pics/teamIcons/manCity.png" style='width:49%;' alt="Manchester City F.C.">
+                  <button type="button" class='tradeButton' name="tradeButton">ACCEPT!</button>
+                </div>
+
+                <div class="tradeBox">
+                  <img src="pics/teamIcons/everton.png" style='width:49%;' alt="Everton F.C.">
+                  <img src="pics/teamIcons/manCity.png" style='width:49%;' alt="Manchester City F.C.">
+                  <button type="button" class='tradeButton' name="tradeButton">ACCEPT!</button>
+                </div>
+
+              </div>
+
+              <div class="swap" style='padding-top=20px;'>
+                <select class="myTeams" style='width: 120px; margin-left: 0px;' name="MyTeams">
+                  <option value="Arsenal">Arsenal</option>
+                  <option value="Chelsea F.C.">Chelsea F.C.</option>
+                  <option value="Wolverhampton Wanderers F.C.">Wolverhampton Wanderers F.C.</option>
+                  <option value="Everton F.C.">Everton F.C.</option>
+                </select>
+
+                <select class="wantedTeams" style='width: 120px; float: right;'name="wantedTeams">
+                  <option value="Manchester City F.C.">Manchester City F.C.</option>
+                  <option value="Liverpool F.C.">Liverpool F.C.</option>
+                  <option value="Leicester F.C.">Leicester F.C.</option>
+                  <option value="Tottenham Hotspurs F.C.">Tottenham Hotspurs F.C.</option>
+                </select>
+
+                <button type="button" class='requestButton' name="button">REQUEST</button>
               </div>
             </div>
         </div>
