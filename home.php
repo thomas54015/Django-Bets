@@ -82,13 +82,28 @@ if ($result->num_rows > 0) {
 */
 if ($leagueAccess == 1)
 {
+  $points = 0;
+  $sql = "SELECT * FROM points WHERE player='$uname' AND league='$leagueP'";
+  $resultx = $conn->query($sql);
+  if ($resultx->num_rows > 0) {
+    while($rowx = $resultx->fetch_assoc()) {
+      $points = $rowx['points'];
+    }
+  }
   echo $leagueP . '<br>';
   echo '<a href="draft.php?leagueP=' . $leagueP . '">Draft!</a><br>';
-  echo "Points: 0<br><br>";
+  echo "Points: $points<br><br>";
 
   echo "League Captin: " . $leagueCaptin . "<br>";
   echo "Players:<br>";
-  echo "1. " . $leagueCaptin . "<br>";
+  $sql = "SELECT * FROM points WHERE player='$leagueCaptin' AND league='$leagueP'";
+  $resultx = $conn->query($sql);
+  if ($resultx->num_rows > 0) {
+    while($rowx = $resultx->fetch_assoc()) {
+      $points = $rowx['points'];
+    }
+  }
+  echo "1. " . $leagueCaptin . " - Points: " . $points . "<br>";
 
   $sql = "SELECT * FROM leagues WHERE league = '$leagueP' AND valid = '1'";
   /*This is the first mySQL. This selects data from the
@@ -102,7 +117,16 @@ if ($leagueAccess == 1)
     while($row = $result->fetch_assoc()) {
       if ($row['username'] != $leagueCaptin)
       {
-        echo $nameCount . ". " . $row['username'] . "<br>";
+        $points = 0;
+        $player = $row['username'];
+        $sql = "SELECT * FROM points WHERE player='$player' AND league='$leagueP'";
+        $resulty = $conn->query($sql);
+        if ($resulty->num_rows > 0) {
+          while($rowy = $resulty->fetch_assoc()) {
+            $points = $rowy['points'];
+          }
+        }
+        echo $nameCount . ". " . $row['username'] . " - Points: " . $points . "<br>";
       }
 
       $nameCount++;
@@ -149,16 +173,24 @@ if ($leagueAccess == 1)
 }
 else if ($leagueAccess == 2)
 {
+  $points = 0;
+  $sql = "SELECT * FROM points WHERE player='$uname' AND league='$leagueP'";
+  $resultx = $conn->query($sql);
+  if ($resultx->num_rows > 0) {
+    while($rowx = $resultx->fetch_assoc()) {
+      $points = $rowx['points'];
+    }
+  }
   // This is for the league captian.
   echo $leagueP . '<br>';
   echo '<a href="draft.php?leagueP=' . $leagueP . '">Draft!</a><br>';
 
-  echo "Points: 0<br><br>";
+  echo "Points: $points<br><br>";
 
   echo "League Captin: " . $leagueCaptin . "<br>";
   echo "* Send links to invite players *<br>";
   echo "Players:<br>";
-  echo "1. " . $leagueCaptin . "<br>";
+  echo "1. " . $leagueCaptin . " - Points: " . $points . "<br>";
 
   $sql = "SELECT * FROM leagues WHERE league = '$leagueP' AND valid = '1'";
   /*This is the first mySQL. This selects data from the
@@ -172,7 +204,16 @@ else if ($leagueAccess == 2)
     while($row = $result->fetch_assoc()) {
       if ($row['username'] != $leagueCaptin)
       {
-        echo $nameCount . ". " . $row['username'] . ' <a href="delete.php?leagueN=' . $leagueP . '&delUser=' . $row['username'] . '">Delete</a><br>';
+        $points = 0;
+        $player = $row['username'];
+        $sql = "SELECT * FROM points WHERE player='$player' AND league='$leagueP'";
+        $resultx = $conn->query($sql);
+        if ($resultx->num_rows > 0) {
+          while($rowx = $resultx->fetch_assoc()) {
+            $points = $rowx['points'];
+          }
+        }
+        echo $nameCount . ". " . $row['username'] . " - Points: " . $points . ' <a href="delete.php?leagueN=' . $leagueP . '&delUser=' . $row['username'] . '">Delete</a><br>';
       }
 
       $nameCount++;
@@ -293,6 +334,121 @@ function updatebutton($servername, $username, $password, $dbname) {
 		echo 'Update Complete<br>';
 	}
 }
+function pointsbutton($servername, $username, $password, $dbname) {
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+  $sql = ("DELETE FROM points");
+  if($conn->query($sql) === FALSE) {
+    echo "SQL FAIL\n";
+  }
+  if (!$conn->commit()) {
+    echo "Transaction commit failed\n";
+  }
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+  $sql = ("SELECT * from draft"); //grab rows in draft
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+      $l = array();
+      $p = array();
+      while($row = $result->fetch_assoc()) {
+          $max = sizeof($l);
+          $found = 0;
+          for($i = 0; $i < $max;$i++) {
+            if ($row['league'] == $l[$i] && $row['username'] == $p[$i]) {
+              $found += 1;
+            }
+          }
+          if ($found == 0) {
+            array_push($l,$row['league']);
+            array_push($p,$row['username']);
+          }
+          elseif ($found == 1) {
+            array_push($l,$row['league']);
+            array_push($p,$row['username']);
+          }
+          elseif ($found == 2) {
+            array_push($l,$row['league']);
+            array_push($p,$row['username']);
+          }
+          elseif ($found == 3) {
+            echo "found3\n";
+            $leaguetemp = $row['league'];
+            $usernametemp = $row['username'];
+            $loss = '';
+            $win1 = '';
+            $win2 = '';
+            $win3 = $row['team'];
+            $points = 0;
+            $sql = ("SELECT * from draft where username='$usernametemp' and league='$leaguetemp'"); 
+            $resultx = $conn->query($sql);
+            if ($resultx->num_rows > 0) {
+              $j = 0;
+              while($rowx = $resultx->fetch_assoc()) {
+                if ($j == 0){
+                  $loss = $rowx['team'];
+                  $sql = ("SELECT * from teams where team='$loss'");
+                  $result1 = $conn->query($sql);
+                  if ($result1->num_rows > 0) {
+                    while($rowy = $result1->fetch_assoc()) {
+                      $points -= $rowy['points'];
+                      echo '$points\n';
+                    }
+                  }
+                }
+                elseif ($j == 1) {
+                  $win1 = $rowx['team'];
+                  $sql = ("SELECT * from teams where team='$win1'");
+                  $result2 = $conn->query($sql);
+                  if ($result2->num_rows > 0) {
+                    while($rowy = $result2->fetch_assoc()) {
+                      $points += $rowy['points'];
+                      echo '$points\n';
+                    }
+                  }
+                }
+                elseif ($j == 2) {
+                  $win2 = $rowx['team'];
+                  $sql = ("SELECT * from teams where team='$win2'"); 
+                  $result3 = $conn->query($sql);
+                  if ($result3->num_rows > 0) {
+                    while($rowy = $result3->fetch_assoc()) {
+                      $points += $rowy['points'];
+                      echo '$points\n';
+                    }
+                  }
+                }
+                elseif ($j == 3) {
+                  $sql = ("SELECT * from teams where team='$win3'");
+                  $result4 = $conn->query($sql);
+                  if ($result4->num_rows > 0) {
+                    while($rowy = $result4->fetch_assoc()) {
+                      $points += $rowy['points'];
+                      echo '$points\n';
+                    }
+                  }
+                }
+                $j += 1;
+            }
+
+            $sql = ("INSERT INTO points VALUES('$leaguetemp','$usernametemp',$points)");
+            if($conn->query($sql) === FALSE) {
+              echo "SQL FAIL\n";
+            }
+            if (!$conn->commit()) {
+              echo "Transaction commit failed\n";
+            }
+          }
+        }
+      }
+  } else {
+      echo "0 results";
+  }
+}
 
 if (!empty($_POST['newLeagueB']))
 {
@@ -371,6 +527,8 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
       //error message if database connection fails.
     }
 
+    
+
     $sql = "SELECT * FROM leagues WHERE username = '$uname' AND valid='1'";
     $result = $conn->query($sql);
 
@@ -378,7 +536,15 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
       // output data of each row
       while($row = $result->fetch_assoc()) {
         $leagueN = $row['league'];
-        echo '<a href="home.php?leagueP=' . $leagueN . '">' . $leagueN . '</a> 0 <br>';
+        $points = 0;
+        $sql = "SELECT * FROM points WHERE player='$uname' AND league='$leagueN'";
+        $resultx = $conn->query($sql);
+        if ($resultx->num_rows > 0) {
+          while($rowx = $resultx->fetch_assoc()) {
+            $points = $rowx['points'];
+          }
+        }
+        echo '<a href="home.php?leagueP=' . $leagueN . '">' . $leagueN . '</a> ' . $points . '<br>';
       }
     }
 }
@@ -429,7 +595,7 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                     <?php
                     
                     echo $_SESSION['userSess'];
-                    if ($_SESSION['userSess'] == "daniluk") {
+                    #if ($_SESSION['userSess'] == "daniluk") {
                       echo "<br><br>";
                       if (array_key_exists('updatebutton', $_POST)) {
                         updatebutton($servername, $username, $password, $dbname);
@@ -437,8 +603,13 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
                       echo '<form method="post">
                       <input type="submit" name="updatebutton"
                         class="button" value="Update Teams" /> ';
+                    echo "<br>";
+                    if (array_key_exists('pointsbutton', $_POST)) {
+                      pointsbutton($servername, $username, $password, $dbname);
                     }
-
+                    echo '<form method="post">
+                    <input type="submit" name="pointsbutton"
+                      class="button" value="Update Points" /> ';
                     ?>
                 <br>
 
