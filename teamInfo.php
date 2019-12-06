@@ -22,7 +22,7 @@ include "functions.php";
               <a href="home.php">Home</a>
             </div>
             <div class="navButtonL">
-              <a href="teamInfo.html">Teams</a>
+              <a href="teamInfo.php">Info</a>
             </div>
             <div class="navButtonR">
               <a href="login.php">Login</a>

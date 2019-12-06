@@ -573,7 +573,7 @@ function leaguesName($servername, $username, $password, $dbname, $uname)
               <a href="home.php">Home</a>
             </div>
             <div class="navButtonL">
-              <a href="teamInfo.html">Info</a>
+              <a href="teamInfo.php">Info</a>
             </div>
             <div class="navButtonR">
               <a href="logout.php">Logout</a>
