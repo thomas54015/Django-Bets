@@ -57,10 +57,21 @@ include "functions.php";
                   table users where the username colum is equal to the username input */
 
                   $result = $conn->query($sql);
-
+                  $uname = $_SESSION['userSess'];
                   if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                      echo '<span style="font-family:Courier New;font-size:25px;"> ' . str_pad($row['league']." ", 20, "=") . " Points: 100" . " Place: 1st" . "<br></span>";
+                      $leagueP = $row['league'];
+                      $sql = "SELECT * FROM points WHERE player='$uname' AND league='$leagueP'";
+                      $resultx = $conn->query($sql);
+                      if ($resultx->num_rows > 0) {
+                        while($rowx = $resultx->fetch_assoc()) {
+                          $points = $rowx['points'];
+                        }
+                      }
+                      else {
+                        $points = 0;
+                      }
+                      echo '<span style="font-family:Courier New;font-size:25px;"> ' . str_pad($row['league']." ", 20, "=") . " Points: $points" . "<br></span>";
                   }
                   }
                 ?>
