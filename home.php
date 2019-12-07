@@ -376,7 +376,6 @@ function pointsbutton($servername, $username, $password, $dbname) {
             array_push($p,$row['username']);
           }
           elseif ($found == 3) {
-            echo "found3\n";
             $leaguetemp = $row['league'];
             $usernametemp = $row['username'];
             $loss = '';
@@ -396,7 +395,6 @@ function pointsbutton($servername, $username, $password, $dbname) {
                   if ($result1->num_rows > 0) {
                     while($rowy = $result1->fetch_assoc()) {
                       $points -= $rowy['points'];
-                      echo '$points\n';
                     }
                   }
                 }
@@ -407,7 +405,6 @@ function pointsbutton($servername, $username, $password, $dbname) {
                   if ($result2->num_rows > 0) {
                     while($rowy = $result2->fetch_assoc()) {
                       $points += $rowy['points'];
-                      echo '$points\n';
                     }
                   }
                 }
@@ -418,7 +415,6 @@ function pointsbutton($servername, $username, $password, $dbname) {
                   if ($result3->num_rows > 0) {
                     while($rowy = $result3->fetch_assoc()) {
                       $points += $rowy['points'];
-                      echo '$points\n';
                     }
                   }
                 }
@@ -428,7 +424,6 @@ function pointsbutton($servername, $username, $password, $dbname) {
                   if ($result4->num_rows > 0) {
                     while($rowy = $result4->fetch_assoc()) {
                       $points += $rowy['points'];
-                      echo '$points\n';
                     }
                   }
                 }
