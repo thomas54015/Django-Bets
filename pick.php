@@ -198,7 +198,7 @@ if ($teamTook == 0 && $userPick == $uname)
   {
     $sql = "INSERT INTO `draft`(`username`, `league`, `team`, `winlose`) VALUES ('$uname','$leagueP','$pick',0)";
   }
-  else if ($roundP <= 4)
+  else if ($roundP <= 3)
   {
     $sql = "INSERT INTO `draft`(`username`, `league`, `team`, `winlose`) VALUES ('$uname','$leagueP','$pick',1)";
   }
